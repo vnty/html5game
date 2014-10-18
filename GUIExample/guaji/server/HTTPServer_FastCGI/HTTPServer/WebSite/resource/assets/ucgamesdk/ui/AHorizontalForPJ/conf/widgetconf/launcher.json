@@ -1,0 +1,26 @@
+{
+  "bgNormalPath"        : "init_bg.png",
+  "logoImageConfig" : {
+    "logoTraverse"        : "init_traverse_logo.png",
+    "logoVertical"        : "init_vertical_logo.png",
+    "bottomMarginTraverse"       : 40,
+    "bottomMarginVertical"       : 90,
+    "visibile"            : false
+  },
+  "loadingConfig"              : {
+    "loadingLight"        : "init_loading_light.png",
+    "loadingDark"        : "init_loading_dark.png",
+    "bottomMarginTraverse"       : 30,
+    "bottomMarginVertical"       : 42,
+    "visibile"            : true
+  },
+  "tipsViewConfig"              : {
+    "textColor"                : "#626262",
+    "text"                     : "正在初始化",
+    "textSize"                 : 32,
+    "isCenter"                 : true,
+    "bottomMarginTraverse"       : 63,
+    "bottomMarginVertical"       : 78,
+    "visibile"                 : true
+  }
+}

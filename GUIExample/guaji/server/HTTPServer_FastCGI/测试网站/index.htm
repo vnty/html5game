@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>易语言开发WEB后台</title>
+<style type="text/css">
+body,td,th { font-size: 14px; }
+h1 { font-size: 16px; color: #333; }
+.fred { color: #F00; }
+</style>
+</head>
+
+<body>
+<h1>网云易语言开发WEB后台</h1>
+<ol>
+	<li>基于网云IOCP3.0服务器(标准网络服务器)框架开发的HTTP服务器，性能与稳定性都经过严格测试，绝对是易语言中最好用的服务器框架</li>
+	<li>HTTP服务器是一套完整的HTTP服务器源码，支持FastCGI模式调用解释PHP脚本。</li>
+	<li>支持建设多网站</li>
+	<li>支持绑定域名</li>
+	<li>支持自定义FastCGI程序(FastCGI程序由用户自行由易语言开发，源程序早已经有一个易开发FastCGI程序的框架)</li>
+</ol>
+<p>这里说明一下FastCGI程序，关于这个的原理这里不说了，大家想了解可以去搜索一下相关资料，由源程序中提供的FastCGI源码编译出来的程序是一个标准的FastCGI程序，完全遵循FastCGI/1.1协议，使用cgi还有一个好处，就是有效的保护你的源码不被公开，不象php等脚本语言，源码全部是公开的。cgi程序编译后是exe，每一个cgi程序是一个独立的程序，后续用户维护相关程序只需要重新编译相关的cgi程序即可，HTTP服务器不需要做任何改动。当然这一切是有代价的，由于每一个cgi程序都是独立，也就是在服务器至少要启动一个进程。</p>
+<p>目前使用FastCGI的网站非常广泛，由其是对速度要求高的一些网站，使用FastCGI最好的选择。相信大家在访问一些大型网站上，总是看到有 cgi-bin/ 或 直接文件名没有扩展名的请求如百度搜索等类似的请求，服务器后台差不多都是用的FastCGI来处理的。由于后台运行的是二进制程序，速度当然就快了。</p>
+<p>从现在开始，您只要使用我们的软件框架，非常轻松就可以搭建成一台非常专业而且高性能的WEB服务器。</p>
+<h1>以下是一些演示：</h1>
+<p><a href="test.php" target="_blank">测试PHP支持</a></p>
+<p><a href="cgi-bin/test?v1=aaaaa&v2=bbbbbb">调用易语言的FastCGI</a></p>
+</body>
+</html>

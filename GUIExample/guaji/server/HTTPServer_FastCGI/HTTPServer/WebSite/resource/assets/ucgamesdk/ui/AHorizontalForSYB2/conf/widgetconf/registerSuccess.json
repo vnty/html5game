@@ -1,0 +1,61 @@
+{
+  "logoImageViewConfig"  : { },
+  "titleConfig"          : {
+    "text"                 : "<font color='#a0a0a0'>|<\/font> 注册成功"
+  },
+  "tipsConfig"           : {
+    "visibile"             : false
+  },
+  "inputWidgetOneConfig" : {
+    "labelTextViewConfig"  : {
+      "textColor"            : "#000000",
+      "text"                 : "",
+      "textSize"             : 24,
+      "width"                : 85,
+      "height"               : 60,
+      "topMargin"            : 158,
+      "leftMargin"           : 24,
+	  "visibile"             : false
+    },
+    "inputEditTextConfig"  : {
+      "enabled"              : false
+    },
+    "rightButtonConfig"    : { }
+  },
+  "inputWidgetTwoConfig" : {
+    "labelTextViewConfig"  : {
+      "textColor"            : "#000000",
+      "text"                 : "",
+      "textSize"             : 24,
+      "width"                : 85,
+      "height"               : 60,
+      "topMargin"            : 158,
+      "leftMargin"           : 24,
+	  "visibile"             : false
+    },
+    "inputEditTextConfig"  : {
+      "enabled"              : false
+    },
+    "rightButtonConfig"    : { }
+  },
+  "buttonConfig"         : {
+    "text"                 : "进入游戏",
+    "topMargin"            : 230
+  },
+  "registerConfig"       : {
+    "visibile"             : false
+  },
+  "sendSmsConfig"            : {
+    "textColor"                : "#a0a0a0",
+    "textPressColor"           : "#ffffff",
+    "text"                     : "将用您的手机发送验证短信",
+    "textSize"                 : 18,
+    "width"                    : 100,
+    "height"                   : 40,
+    "leftMargin"               : 24,
+    "bottomMargin"             : 12
+  },
+  "licenseConfig"        : { },
+  "height"               : 330,
+  "parent"               : "register"
+}

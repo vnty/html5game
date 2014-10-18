@@ -1,0 +1,29 @@
+{
+    "comments":"leftBackgroundImage,rightBackgroundImage,selectedBackgroundIcon为冗余字段，兼容3.4.5至3.4.6过度",
+    
+    "floatMenuBackgroundImageLeft":"conf/float_menu_left",
+    "floatMenuBackgroundImageRight":"conf/float_menu_right",  
+    "width":-2,
+    "menuItems":[
+        {
+            "marginLeft":9,
+            "marginRight":9,
+            "defaultIcon":"conf/icon_account.png",
+            "selectedIcon":"conf/icon_account_press.png",
+            "title":"账户",
+            "titleFontSize":10,
+            "defaultFontColor":-1,
+            "action":{
+                "business":"user_center",
+                "menuStat":"A_float_account_b"
+            },
+            "bubble":{
+                "borderColor":0xFFFF0000,
+                "backgroundColor":0xFFFF0000,
+                "fontColor":-1,
+                "fontSize":10,
+                "service":""
+            }
+        }
+    ]
+}
