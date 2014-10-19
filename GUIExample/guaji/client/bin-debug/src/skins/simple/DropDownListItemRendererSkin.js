@@ -6,21 +6,23 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var DropDownListItemRendererSkin = (function (_super) {
             __extends(DropDownListItemRendererSkin, _super);
             function DropDownListItemRendererSkin() {
                 _super.call(this);
-
                 this.height = 40;
                 this.elementsContent = [this.__4_i(), this.__5_i(), this.labelDisplay_i()];
                 this.states = [
-                    new egret.gui.State("up", []),
+                    new egret.gui.State("up", [
+                    ]),
                     new egret.gui.State("down", [
                         new egret.gui.SetProperty("__4", "source", "app_list_item_select_png"),
                         new egret.gui.SetProperty("labelDisplay", "textColor", 0xf0f0f0)
                     ]),
-                    new egret.gui.State("disabled", [])
+                    new egret.gui.State("disabled", [
+                    ])
                 ];
             }
             Object.defineProperty(DropDownListItemRendererSkin.prototype, "skinParts", {
@@ -59,7 +61,6 @@ var skins;
             return DropDownListItemRendererSkin;
         })(egret.gui.Skin);
         simple.DropDownListItemRendererSkin = DropDownListItemRendererSkin;
-        DropDownListItemRendererSkin.prototype.__class__ = "skins.simple.DropDownListItemRendererSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        DropDownListItemRendererSkin.prototype.__class__ = "simple.DropDownListItemRendererSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

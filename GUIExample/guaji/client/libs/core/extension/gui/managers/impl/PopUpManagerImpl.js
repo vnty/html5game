@@ -1,29 +1,29 @@
 /**
-* Copyright (c) 2014,Egret-Labs.org
-* All rights reserved.
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-*     * Redistributions of source code must retain the above copyright
-*       notice, this list of conditions and the following disclaimer.
-*     * Redistributions in binary form must reproduce the above copyright
-*       notice, this list of conditions and the following disclaimer in the
-*       documentation and/or other materials provided with the distribution.
-*     * Neither the name of the Egret-Labs.org nor the
-*       names of its contributors may be used to endorse or promote products
-*       derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
-* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * Copyright (c) 2014,Egret-Labs.org
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Egret-Labs.org nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -32,26 +32,27 @@ var __extends = this.__extends || function (d, b) {
 };
 var egret;
 (function (egret) {
+    var gui;
     (function (gui) {
         /**
-        * @class egret.gui.PopUpManagerImpl
-        * @classdesc
-        * 窗口弹出管理器实现类
-        * @extends egret.EventDispatcher
-        * @implements egret.gui.IPopUpManager
-        */
+         * @class egret.gui.PopUpManagerImpl
+         * @classdesc
+         * 窗口弹出管理器实现类
+         * @extends egret.EventDispatcher
+         * @implements egret.gui.IPopUpManager
+         */
         var PopUpManagerImpl = (function (_super) {
             __extends(PopUpManagerImpl, _super);
             /**
-            * 构造函数
-            * @method egret.gui.PopUpManagerImpl#constructor
-            */
+             * 构造函数
+             * @method egret.gui.PopUpManagerImpl#constructor
+             */
             function PopUpManagerImpl() {
                 _super.call(this);
                 this._popUpList = [];
                 /**
-                * 模态窗口列表
-                */
+                 * 模态窗口列表
+                 */
                 this.popUpDataList = [];
                 this._modalColor = 0x000000;
                 this._modalAlpha = 0.5;
@@ -59,19 +60,18 @@ var egret;
             }
             Object.defineProperty(PopUpManagerImpl.prototype, "popUpList", {
                 /**
-                * 已经弹出的窗口列表
-                * @member egret.gui.PopUpManagerImpl#popUpList
-                */
+                 * 已经弹出的窗口列表
+                 * @member egret.gui.PopUpManagerImpl#popUpList
+                 */
                 get: function () {
                     return this._popUpList.concat();
                 },
                 enumerable: true,
                 configurable: true
             });
-
             /**
-            * 根据popUp获取对应的popUpData
-            */
+             * 根据popUp获取对应的popUpData
+             */
             PopUpManagerImpl.prototype.findPopUpData = function (popUp) {
                 var list = this.popUpDataList;
                 var length = list.length;
@@ -82,23 +82,23 @@ var egret;
                 }
                 return null;
             };
-
             /**
-            * 弹出一个窗口。<br/>
-            * @method egret.gui.PopUpManagerImpl#addPopUp
-            * @param popUp {IVisualElement} 要弹出的窗口
-            * @param modal {boolean} 是否启用模态。即禁用弹出窗口所在层以下的鼠标事件。默认false。
-            * @param center {boolean} 是否居中窗口。等效于在外部调用centerPopUp()来居中。默认true。
-            */
+             * 弹出一个窗口。<br/>
+             * @method egret.gui.PopUpManagerImpl#addPopUp
+             * @param popUp {IVisualElement} 要弹出的窗口
+             * @param modal {boolean} 是否启用模态。即禁用弹出窗口所在层以下的鼠标事件。默认false。
+             * @param center {boolean} 是否居中窗口。等效于在外部调用centerPopUp()来居中。默认true。
+             */
             PopUpManagerImpl.prototype.addPopUp = function (popUp, modal, center) {
-                if (typeof modal === "undefined") { modal = false; }
-                if (typeof center === "undefined") { center = true; }
+                if (modal === void 0) { modal = false; }
+                if (center === void 0) { center = true; }
                 var uiStage = gui.UIGlobals.uiStage;
                 var data = this.findPopUpData(popUp);
                 if (data) {
                     data.modal = modal;
                     popUp.removeEventListener(PopUpManagerImpl.REMOVE_FROM_UISTAGE, this.onRemoved, this);
-                } else {
+                }
+                else {
                     data = new PopUpData(popUp, modal);
                     this.popUpDataList.push(data);
                     this._popUpList.push(popUp);
@@ -113,10 +113,9 @@ var egret;
                 }
                 popUp.addEventListener(PopUpManagerImpl.REMOVE_FROM_UISTAGE, this.onRemoved, this);
             };
-
             /**
-            * 从舞台移除
-            */
+             * 从舞台移除
+             */
             PopUpManagerImpl.prototype.onRemoved = function (event) {
                 var index = 0;
                 var list = this.popUpDataList;
@@ -135,12 +134,11 @@ var egret;
                     index++;
                 }
             };
-
             Object.defineProperty(PopUpManagerImpl.prototype, "modalColor", {
                 /**
-                * 模态遮罩的填充颜色
-                * @member egret.gui.PopUpManagerImpl#modalColor
-                */
+                 * 模态遮罩的填充颜色
+                 * @member egret.gui.PopUpManagerImpl#modalColor
+                 */
                 get: function () {
                     return this._modalColor;
                 },
@@ -153,12 +151,11 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
             Object.defineProperty(PopUpManagerImpl.prototype, "modalAlpha", {
                 /**
-                * 模态遮罩的透明度
-                * @member egret.gui.PopUpManagerImpl#modalAlpha
-                */
+                 * 模态遮罩的透明度
+                 * @member egret.gui.PopUpManagerImpl#modalAlpha
+                 */
                 get: function () {
                     return this._modalAlpha;
                 },
@@ -171,10 +168,9 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
             /**
-            * 标记一个UIStage的模态层失效
-            */
+             * 标记一个UIStage的模态层失效
+             */
             PopUpManagerImpl.prototype.invalidateModal = function () {
                 if (!this.invalidateModalFlag) {
                     this.invalidateModalFlag = true;
@@ -183,17 +179,15 @@ var egret;
                     gui.UIGlobals.stage.invalidate();
                 }
             };
-
             PopUpManagerImpl.prototype.validateModal = function (event) {
                 this.invalidateModalFlag = false;
                 gui.UIGlobals.stage.removeEventListener(egret.Event.ENTER_FRAME, this.validateModal, this);
                 gui.UIGlobals.stage.removeEventListener(egret.Event.RENDER, this.validateModal, this);
                 this.updateModal(gui.UIGlobals.uiStage);
             };
-
             /**
-            * 更新窗口模态效果
-            */
+             * 更新窗口模态效果
+             */
             PopUpManagerImpl.prototype.updateModal = function (uiStage) {
                 var popUpContainer = uiStage.popUpContainer;
                 var found = false;
@@ -217,19 +211,20 @@ var egret;
                         if (popUpContainer.getElementIndex(this.modalMask) < i)
                             i--;
                         popUpContainer.setElementIndex(this.modalMask, i);
-                    } else {
+                    }
+                    else {
                         popUpContainer.addElementAt(this.modalMask, i);
                     }
-                } else if (this.modalMask && this.modalMask.parent == uiStage) {
+                }
+                else if (this.modalMask && this.modalMask.parent == uiStage) {
                     popUpContainer.removeElement(this.modalMask);
                 }
             };
-
             /**
-            * 移除由addPopUp()方法弹出的窗口。
-            * @method egret.gui.PopUpManagerImpl#removePopUp
-            * @param popUp {IVisualElement} 要移除的窗口
-            */
+             * 移除由addPopUp()方法弹出的窗口。
+             * @method egret.gui.PopUpManagerImpl#removePopUp
+             * @param popUp {IVisualElement} 要移除的窗口
+             */
             PopUpManagerImpl.prototype.removePopUp = function (popUp) {
                 if (popUp && popUp.parent && this.findPopUpData(popUp)) {
                     if ("removeElement" in popUp.parent)
@@ -240,12 +235,11 @@ var egret;
                         popUp.parent.removeChild(popUp);
                 }
             };
-
             /**
-            * 将指定窗口居中显示
-            * @method egret.gui.PopUpManagerImpl#centerPopUp
-            * @param popUp {IVisualElement} 要居中显示的窗口
-            */
+             * 将指定窗口居中显示
+             * @method egret.gui.PopUpManagerImpl#centerPopUp
+             * @param popUp {IVisualElement} 要居中显示的窗口
+             */
             PopUpManagerImpl.prototype.centerPopUp = function (popUp) {
                 popUp.top = popUp.bottom = popUp.left = popUp.right = NaN;
                 popUp.verticalCenter = popUp.horizontalCenter = 0;
@@ -257,12 +251,11 @@ var egret;
                     popUp.y = (parent.height - popUp.layoutBoundsHeight) * 0.5;
                 }
             };
-
             /**
-            * 将指定窗口的层级调至最前
-            * @method egret.gui.PopUpManagerImpl#bringToFront
-            * @param popUp {IVisualElement} 要最前显示的窗口
-            */
+             * 将指定窗口的层级调至最前
+             * @method egret.gui.PopUpManagerImpl#bringToFront
+             * @param popUp {IVisualElement} 要最前显示的窗口
+             */
             PopUpManagerImpl.prototype.bringToFront = function (popUp) {
                 var data = this.findPopUpData(popUp);
                 if (data && popUp.parent && "popUpContainer" in popUp.parent) {
@@ -275,21 +268,18 @@ var egret;
             return PopUpManagerImpl;
         })(egret.EventDispatcher);
         gui.PopUpManagerImpl = PopUpManagerImpl;
-        PopUpManagerImpl.prototype.__class__ = "egret.gui.PopUpManagerImpl";
-
+        PopUpManagerImpl.prototype.__class__ = "gui.PopUpManagerImpl";
         var PopUpData = (function () {
             /**
-            * @method egret.PopUpData#constructor
-            * @param popUp {IVisualElement}
-            * @param modal {boolea}
-            */
+             * @method egret.PopUpData#constructor
+             * @param popUp {IVisualElement}
+             * @param modal {boolea}
+             */
             function PopUpData(popUp, modal) {
                 this.popUp = popUp;
                 this.modal = modal;
             }
             return PopUpData;
         })();
-        PopUpData.prototype.__class__ = "PopUpData";
-    })(egret.gui || (egret.gui = {}));
-    var gui = egret.gui;
+    })(gui = egret.gui || (egret.gui = {}));
 })(egret || (egret = {}));

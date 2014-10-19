@@ -6,19 +6,21 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var SkinnableContainerSkin = (function (_super) {
             __extends(SkinnableContainerSkin, _super);
             function SkinnableContainerSkin() {
                 _super.call(this);
-
                 this.maxWidth = 710;
                 this.minHeight = 230;
                 this.minWidth = 470;
                 this.elementsContent = [this.contentGroup_i()];
                 this.states = [
-                    new egret.gui.State("normal", []),
-                    new egret.gui.State("disabled", [])
+                    new egret.gui.State("normal", [
+                    ]),
+                    new egret.gui.State("disabled", [
+                    ])
                 ];
             }
             Object.defineProperty(SkinnableContainerSkin.prototype, "skinParts", {
@@ -39,7 +41,6 @@ var skins;
             return SkinnableContainerSkin;
         })(egret.gui.Skin);
         simple.SkinnableContainerSkin = SkinnableContainerSkin;
-        SkinnableContainerSkin.prototype.__class__ = "skins.simple.SkinnableContainerSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        SkinnableContainerSkin.prototype.__class__ = "simple.SkinnableContainerSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

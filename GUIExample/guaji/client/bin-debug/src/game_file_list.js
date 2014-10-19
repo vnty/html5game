@@ -1,4 +1,7 @@
 var game_file_list = [
+    "ui/Battl109Skin.js",
+    "ui/BattlePetSkin.js",
+    "ui/BattlePlayerSkin.js",
     "ui/BattleSkinRole.js",
     "skins/simple/TreeDisclosureButtonSkin.js",
     "ui/BattleSkin.js",

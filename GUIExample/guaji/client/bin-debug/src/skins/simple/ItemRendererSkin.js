@@ -6,12 +6,12 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var ItemRendererSkin = (function (_super) {
             __extends(ItemRendererSkin, _super);
             function ItemRendererSkin() {
                 _super.call(this);
-
                 this.height = 85;
                 this.elementsContent = [this.__4_i(), this.__5_i(), this.labelDisplay_i()];
                 this.states = [
@@ -22,7 +22,8 @@ var skins;
                         new egret.gui.SetProperty("__4", "source", "app_list_item_select_png"),
                         new egret.gui.SetProperty("labelDisplay", "textColor", 0xf0f0f0)
                     ]),
-                    new egret.gui.State("disabled", [])
+                    new egret.gui.State("disabled", [
+                    ])
                 ];
             }
             Object.defineProperty(ItemRendererSkin.prototype, "skinParts", {
@@ -63,7 +64,6 @@ var skins;
             return ItemRendererSkin;
         })(egret.gui.Skin);
         simple.ItemRendererSkin = ItemRendererSkin;
-        ItemRendererSkin.prototype.__class__ = "skins.simple.ItemRendererSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        ItemRendererSkin.prototype.__class__ = "simple.ItemRendererSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

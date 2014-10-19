@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin width="400" height="300" xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+<e:Skin width="138" height="42" xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
 	<w:HostComponent name="egret.gui.SkinnableComponent"/>
 	<w:Declarations/>
 	<e:states>
@@ -8,5 +8,7 @@
 	</e:states>
 	<e:UIAsset y="4" width="28" height="28" id="pic" x="10" source="p_10003"/>
 	<e:UIAsset y="0" width="136" height="42" source="img_128" x="0"/>
+	<e:UIAsset width="85" height="9" id="hp" scale9Grid="4,6,2,2" source="img_27" x="39" y="14"/>
 	<e:Label size="11" width="85" text="Lv.40 宠物" height="13" id="data" textColor="0xFFFFFF" x="42" y="0"/>
+	<e:Label id="hpText" size="7" textAlign="center" width="80" text="1500/50000" height="12" textColor="0xFFFFFF" x="41" y="13"/>
 </e:Skin>

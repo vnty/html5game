@@ -6,18 +6,21 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var TreeItemRendererSkin = (function (_super) {
             __extends(TreeItemRendererSkin, _super);
             function TreeItemRendererSkin() {
                 _super.call(this);
-
                 this.minHeight = 22;
                 this.elementsContent = [this.contentGroup_i()];
                 this.states = [
-                    new egret.gui.State("up", []),
-                    new egret.gui.State("down", []),
-                    new egret.gui.State("disabled", [])
+                    new egret.gui.State("up", [
+                    ]),
+                    new egret.gui.State("down", [
+                    ]),
+                    new egret.gui.State("disabled", [
+                    ])
                 ];
             }
             Object.defineProperty(TreeItemRendererSkin.prototype, "skinParts", {
@@ -74,7 +77,6 @@ var skins;
             return TreeItemRendererSkin;
         })(egret.gui.Skin);
         simple.TreeItemRendererSkin = TreeItemRendererSkin;
-        TreeItemRendererSkin.prototype.__class__ = "skins.simple.TreeItemRendererSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        TreeItemRendererSkin.prototype.__class__ = "simple.TreeItemRendererSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

@@ -6,17 +6,19 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var ProgressBarSkin = (function (_super) {
             __extends(ProgressBarSkin, _super);
             function ProgressBarSkin() {
                 _super.call(this);
-
                 this.height = 100;
                 this.elementsContent = [this.__3_i(), this.thumb_i(), this.track_i(), this.labelDisplay_i()];
                 this.states = [
-                    new egret.gui.State("normal", []),
-                    new egret.gui.State("disabled", [])
+                    new egret.gui.State("normal", [
+                    ]),
+                    new egret.gui.State("disabled", [
+                    ])
                 ];
             }
             Object.defineProperty(ProgressBarSkin.prototype, "skinParts", {
@@ -63,7 +65,6 @@ var skins;
             return ProgressBarSkin;
         })(egret.gui.Skin);
         simple.ProgressBarSkin = ProgressBarSkin;
-        ProgressBarSkin.prototype.__class__ = "skins.simple.ProgressBarSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        ProgressBarSkin.prototype.__class__ = "simple.ProgressBarSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

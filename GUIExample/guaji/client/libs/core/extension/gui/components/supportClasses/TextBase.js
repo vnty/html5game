@@ -1,29 +1,29 @@
 /**
-* Copyright (c) 2014,Egret-Labs.org
-* All rights reserved.
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-*     * Redistributions of source code must retain the above copyright
-*       notice, this list of conditions and the following disclaimer.
-*     * Redistributions in binary form must reproduce the above copyright
-*       notice, this list of conditions and the following disclaimer in the
-*       documentation and/or other materials provided with the distribution.
-*     * Neither the name of the Egret-Labs.org nor the
-*       names of its contributors may be used to endorse or promote products
-*       derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
-* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * Copyright (c) 2014,Egret-Labs.org
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Egret-Labs.org nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -32,19 +32,20 @@ var __extends = this.__extends || function (d, b) {
 };
 var egret;
 (function (egret) {
+    var gui;
     (function (gui) {
         /**
-        * @class egret.gui.TextBase
-        * @classdesc
-        * 文本基类,实现对文本的自动布局，样式属性设置。
-        * @extends egret.gui.UIComponent
-        * @implements egret.gui.IDisplayText
-        */
+         * @class egret.gui.TextBase
+         * @classdesc
+         * 文本基类,实现对文本的自动布局，样式属性设置。
+         * @extends egret.gui.UIComponent
+         * @implements egret.gui.IDisplayText
+         */
         var TextBase = (function (_super) {
             __extends(TextBase, _super);
             /**
-            * @method egret.gui.TextBase#constructor
-            */
+             * @method egret.gui.TextBase#constructor
+             */
             function TextBase() {
                 _super.call(this);
                 this._fontFamily = "SimSun";
@@ -57,9 +58,9 @@ var egret;
             }
             Object.defineProperty(TextBase.prototype, "fontFamily", {
                 /**
-                * 字体名称 。默认值：SimSun
-                * @member egret.gui.TextBase#fontFamily
-                */
+                 * 字体名称 。默认值：SimSun
+                 * @member egret.gui.TextBase#fontFamily
+                 */
                 get: function () {
                     return this._fontFamily;
                 },
@@ -75,13 +76,11 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(TextBase.prototype, "size", {
                 /**
-                * 字号大小,默认值30 。
-                * @member egret.gui.TextBase#size
-                */
+                 * 字号大小,默认值30 。
+                 * @member egret.gui.TextBase#size
+                 */
                 get: function () {
                     return this._size;
                 },
@@ -97,13 +96,11 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(TextBase.prototype, "bold", {
                 /**
-                * 是否显示为粗体，默认false。
-                * @member egret.gui.TextBase#bold
-                */
+                 * 是否显示为粗体，默认false。
+                 * @member egret.gui.TextBase#bold
+                 */
                 get: function () {
                     return this._bold;
                 },
@@ -119,13 +116,11 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(TextBase.prototype, "italic", {
                 /**
-                * 是否显示为粗体，默认false。
-                * @member egret.gui.TextBase#italic
-                */
+                 * 是否显示为粗体，默认false。
+                 * @member egret.gui.TextBase#italic
+                 */
                 get: function () {
                     return this._italic;
                 },
@@ -141,14 +136,12 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(TextBase.prototype, "textAlign", {
                 /**
-                * 文字的水平对齐方式 ,请使用HorizontalAlign中定义的常量。
-                * 默认值：HorizontalAlign.LEFT。
-                * @member egret.gui.TextBase#textAlign
-                */
+                 * 文字的水平对齐方式 ,请使用HorizontalAlign中定义的常量。
+                 * 默认值：HorizontalAlign.LEFT。
+                 * @member egret.gui.TextBase#textAlign
+                 */
                 get: function () {
                     return this._textAlign;
                 },
@@ -164,14 +157,12 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(TextBase.prototype, "verticalAlign", {
                 /**
-                * 文字的垂直对齐方式 ,请使用VerticalAlign中定义的常量。
-                * 默认值：VerticalAlign.TOP。
-                * @member egret.gui.TextBase#verticalAlign
-                */
+                 * 文字的垂直对齐方式 ,请使用VerticalAlign中定义的常量。
+                 * 默认值：VerticalAlign.TOP。
+                 * @member egret.gui.TextBase#verticalAlign
+                 */
                 get: function () {
                     return this._verticalAlign;
                 },
@@ -187,13 +178,11 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(TextBase.prototype, "lineSpacing", {
                 /**
-                * 行间距
-                * @member egret.gui.TextBase#lineSpacing
-                */
+                 * 行间距
+                 * @member egret.gui.TextBase#lineSpacing
+                 */
                 get: function () {
                     return this._lineSpacing;
                 },
@@ -209,12 +198,10 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(TextBase.prototype, "textColor", {
                 /**
-                * @member egret.gui.TextBase#textColor
-                */
+                 * @member egret.gui.TextBase#textColor
+                 */
                 get: function () {
                     return this._textColor;
                 },
@@ -228,12 +215,10 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(TextBase.prototype, "text", {
                 /**
-                * @member egret.gui.TextBase#text
-                */
+                 * @member egret.gui.TextBase#text
+                 */
                 get: function () {
                     return this._text;
                 },
@@ -249,29 +234,23 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             /**
-            * @method egret.gui.TextBase#createChildren
-            */
+             * @method egret.gui.TextBase#createChildren
+             */
             TextBase.prototype.createChildren = function () {
                 _super.prototype.createChildren.call(this);
-
                 if (!this._textField) {
                     this.checkTextField();
                 }
             };
-
             /**
-            * @method egret.gui.TextBase#commitProperties
-            */
+             * @method egret.gui.TextBase#commitProperties
+             */
             TextBase.prototype.commitProperties = function () {
                 _super.prototype.commitProperties.call(this);
-
                 if (!this._textField) {
                     this.checkTextField();
                 }
-
                 if (this.fontFamilyChanged) {
                     this._textField.fontFamily = this._fontFamily;
                     this.fontFamilyChanged = false;
@@ -309,10 +288,9 @@ var egret;
                     this._textChanged = false;
                 }
             };
-
             /**
-            * 检查是否创建了textField对象，没有就创建一个。
-            */
+             * 检查是否创建了textField对象，没有就创建一个。
+             */
             TextBase.prototype.checkTextField = function () {
                 if (!this._textField) {
                     this.createTextField();
@@ -321,7 +299,6 @@ var egret;
                     this.invalidateProperties();
                 }
             };
-
             TextBase.prototype.createTextField = function () {
                 this._textField = new egret.TextField;
                 this._textField.fontFamily = this._fontFamily;
@@ -332,44 +309,46 @@ var egret;
                 this._textField.textColor = this._textColor;
                 this._addToDisplayList(this._textField);
             };
-
             /**
-            * @method egret.gui.TextBase#measure
-            */
+             * @method egret.gui.TextBase#measure
+             */
             TextBase.prototype.measure = function () {
                 _super.prototype.measure.call(this);
-
                 this.measuredWidth = TextBase.DEFAULT_MEASURED_WIDTH;
                 this.measuredHeight = TextBase.DEFAULT_MEASURED_HEIGHT;
             };
-
             /**
-            * 更新显示列表
-            * @method egret.gui.TextBase#$updateDisplayList
-            * @param unscaledWidth {number}
-            * @param unscaledHeight {number}
-            */
+             * 更新显示列表
+             * @method egret.gui.TextBase#$updateDisplayList
+             * @param unscaledWidth {number}
+             * @param unscaledHeight {number}
+             */
             TextBase.prototype.$updateDisplayList = function (unscaledWidth, unscaledHeight) {
                 _super.prototype.updateDisplayList.call(this, unscaledWidth, unscaledHeight);
             };
-
             /**
-            * @method egret.gui.TextBase#updateDisplayList
-            * @param unscaledWidth {number}
-            * @param unscaledHeight {number}
-            */
+             * @method egret.gui.TextBase#updateDisplayList
+             * @param unscaledWidth {number}
+             * @param unscaledHeight {number}
+             */
             TextBase.prototype.updateDisplayList = function (unscaledWidth, unscaledHeight) {
                 _super.prototype.updateDisplayList.call(this, unscaledWidth, unscaledHeight);
                 this._textField.width = unscaledWidth;
                 this._textField.height = unscaledHeight;
             };
+            /**
+             * 默认的文本测量宽度
+             * @constant egret.gui.TextBase.DEFAULT_MEASURED_WIDTH
+             */
             TextBase.DEFAULT_MEASURED_WIDTH = 160;
-
+            /**
+             * 默认的文本测量高度
+             * @constant egret.gui.TextBase.DEFAULT_MEASURED_HEIGHT
+             */
             TextBase.DEFAULT_MEASURED_HEIGHT = 22;
             return TextBase;
         })(gui.UIComponent);
         gui.TextBase = TextBase;
-        TextBase.prototype.__class__ = "egret.gui.TextBase";
-    })(egret.gui || (egret.gui = {}));
-    var gui = egret.gui;
+        TextBase.prototype.__class__ = "gui.TextBase";
+    })(gui = egret.gui || (egret.gui = {}));
 })(egret || (egret = {}));

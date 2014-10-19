@@ -107,6 +107,18 @@ declare module skins.simple{
 	}
 }
 declare module ui{
+	class Battl109Skin extends egret.gui.Skin{
+	}
+}
+declare module ui{
+	class BattlePetSkin extends egret.gui.Skin{
+	}
+}
+declare module ui{
+	class BattlePlayerSkin extends egret.gui.Skin{
+	}
+}
+declare module ui{
 	class BattleSkin extends egret.gui.Skin{
 	}
 }

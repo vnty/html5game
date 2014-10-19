@@ -6,12 +6,12 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var ToggleSwitchSkin = (function (_super) {
             __extends(ToggleSwitchSkin, _super);
             function ToggleSwitchSkin() {
                 _super.call(this);
-
                 this.elementsContent = [this.__7_i(), this.__8_i(), this.__9_i(), this.__10_i(), this.__11_i(), this.__12_i()];
                 this.states = [
                     new egret.gui.State("up", [
@@ -99,7 +99,6 @@ var skins;
             return ToggleSwitchSkin;
         })(egret.gui.Skin);
         simple.ToggleSwitchSkin = ToggleSwitchSkin;
-        ToggleSwitchSkin.prototype.__class__ = "skins.simple.ToggleSwitchSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        ToggleSwitchSkin.prototype.__class__ = "simple.ToggleSwitchSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

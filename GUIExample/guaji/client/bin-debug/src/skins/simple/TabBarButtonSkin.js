@@ -6,17 +6,18 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var TabBarButtonSkin = (function (_super) {
             __extends(TabBarButtonSkin, _super);
             function TabBarButtonSkin() {
                 _super.call(this);
-
                 this.height = 60;
                 this.minWidth = 140;
                 this.elementsContent = [this.__7_i(), this.labelDisplay_i()];
                 this.states = [
-                    new egret.gui.State("up", []),
+                    new egret.gui.State("up", [
+                    ]),
                     new egret.gui.State("down", [
                         new egret.gui.SetProperty("__7", "source", "button_down_png"),
                         new egret.gui.SetProperty("labelDisplay", "textColor", 0x222222)
@@ -72,7 +73,6 @@ var skins;
             return TabBarButtonSkin;
         })(egret.gui.Skin);
         simple.TabBarButtonSkin = TabBarButtonSkin;
-        TabBarButtonSkin.prototype.__class__ = "skins.simple.TabBarButtonSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        TabBarButtonSkin.prototype.__class__ = "simple.TabBarButtonSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

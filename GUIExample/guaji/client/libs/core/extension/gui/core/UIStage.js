@@ -1,29 +1,29 @@
 /**
-* Copyright (c) 2014,Egret-Labs.org
-* All rights reserved.
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-*     * Redistributions of source code must retain the above copyright
-*       notice, this list of conditions and the following disclaimer.
-*     * Redistributions in binary form must reproduce the above copyright
-*       notice, this list of conditions and the following disclaimer in the
-*       documentation and/or other materials provided with the distribution.
-*     * Neither the name of the Egret-Labs.org nor the
-*       names of its contributors may be used to endorse or promote products
-*       derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
-* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * Copyright (c) 2014,Egret-Labs.org
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Egret-Labs.org nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -32,22 +32,23 @@ var __extends = this.__extends || function (d, b) {
 };
 var egret;
 (function (egret) {
+    var gui;
     (function (gui) {
         /**
-        * @class egret.gui.UIStage
-        * @classdesc
-        * 系统管理器，应用程序顶级容器。
-        * 通常情况下，一个程序应该只含有唯一的系统管理器,并且所有的组件都包含在它内部。
-        * 它负责管理弹窗，鼠标样式，工具提示的显示层级，以及过滤鼠标和键盘事件为可以取消的。
-        * @extends egret.gui.Group
-        * @implements egret.gui.IUIStage
-        */
+         * @class egret.gui.UIStage
+         * @classdesc
+         * 系统管理器，应用程序顶级容器。
+         * 通常情况下，一个程序应该只含有唯一的系统管理器,并且所有的组件都包含在它内部。
+         * 它负责管理弹窗，鼠标样式，工具提示的显示层级，以及过滤鼠标和键盘事件为可以取消的。
+         * @extends egret.gui.Group
+         * @implements egret.gui.IUIStage
+         */
         var UIStage = (function (_super) {
             __extends(UIStage, _super);
             /**
-            * 构造函数
-            * @method egret.gui.UIStage#constructor
-            */
+             * 构造函数
+             * @method egret.gui.UIStage#constructor
+             */
             function UIStage() {
                 _super.call(this);
                 this._autoResize = true;
@@ -59,10 +60,10 @@ var egret;
                 this.addEventListener(egret.Event.REMOVED_FROM_STAGE, this.onRemoveFromStage, this);
             }
             /**
-            * 添加到舞台
-            */
+             * 添加到舞台
+             */
             UIStage.prototype.onAddToStage = function (event) {
-                if (typeof event === "undefined") { event = null; }
+                if (event === void 0) { event = null; }
                 if (gui.UIGlobals._uiStage) {
                     throw new Error("UIStage是GUI根容器，只能有一个此实例在显示列表中！");
                 }
@@ -72,32 +73,29 @@ var egret;
                     this.onResize();
                 }
             };
-
             /**
-            * 从舞台移除
-            */
+             * 从舞台移除
+             */
             UIStage.prototype.onRemoveFromStage = function (event) {
                 gui.UIGlobals._uiStage = null;
                 if (this._autoResize) {
                     this.stage.removeEventListener(egret.Event.RESIZE, this.onResize, this);
                 }
             };
-
             /**
-            * 舞台尺寸改变
-            */
+             * 舞台尺寸改变
+             */
             UIStage.prototype.onResize = function (event) {
-                if (typeof event === "undefined") { event = null; }
+                if (event === void 0) { event = null; }
                 this._setWidth(this.stage.stageWidth);
                 this._setHeight(this.stage.stageHeight);
             };
-
             Object.defineProperty(UIStage.prototype, "autoResize", {
                 /**
-                * 是否自动跟随舞台缩放。当此属性为true时，将强制让UIState始终与舞台保持相同大小。
-                * 反之需要外部手动同步大小。默认值为true。
-                * @member egret.gui.UIStage#autoResize
-                */
+                 * 是否自动跟随舞台缩放。当此属性为true时，将强制让UIState始终与舞台保持相同大小。
+                 * 反之需要外部手动同步大小。默认值为true。
+                 * @member egret.gui.UIStage#autoResize
+                 */
                 get: function () {
                     return this._autoResize;
                 },
@@ -110,28 +108,27 @@ var egret;
                     if (this._autoResize) {
                         this.stage.addEventListener(egret.Event.RESIZE, this.onResize, this);
                         this.onResize();
-                    } else {
+                    }
+                    else {
                         this.stage.removeEventListener(egret.Event.RESIZE, this.onResize, this);
                     }
                 },
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(UIStage.prototype, "x", {
                 //==========================================================================
                 //                            禁止外部布局顶级容器
                 //==========================================================================
                 /**
-                * @constant egret.gui.UIStage#x
-                */
+                 * @constant egret.gui.UIStage#x
+                 */
                 get: function () {
                     return this._x;
                 },
                 /**
-                * @inheritDoc
-                */
+                 * @inheritDoc
+                 */
                 set: function (value) {
                     if (this._autoResize)
                         return;
@@ -140,18 +137,16 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(UIStage.prototype, "y", {
                 /**
-                * @constant egret.gui.UIStage#y
-                */
+                 * @constant egret.gui.UIStage#y
+                 */
                 get: function () {
                     return this._y;
                 },
                 /**
-                * @inheritDoc
-                */
+                 * @inheritDoc
+                 */
                 set: function (value) {
                     if (this._autoResize)
                         return;
@@ -160,18 +155,16 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(UIStage.prototype, "width", {
                 /**
-                * @member egret.gui.UIStage#width
-                */
+                 * @member egret.gui.UIStage#width
+                 */
                 get: function () {
                     return this._width;
                 },
                 /**
-                * @inheritDoc
-                */
+                 * @inheritDoc
+                 */
                 set: function (value) {
                     if (this._autoResize)
                         return;
@@ -180,18 +173,16 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(UIStage.prototype, "height", {
                 /**
-                * @member egret.gui.UIStage#height
-                */
+                 * @member egret.gui.UIStage#height
+                 */
                 get: function () {
                     return this._height;
                 },
                 /**
-                * @inheritDoc
-                */
+                 * @inheritDoc
+                 */
                 set: function (value) {
                     if (this._autoResize)
                         return;
@@ -200,18 +191,16 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(UIStage.prototype, "scaleX", {
                 /**
-                * @member egret.gui.UIStage#scaleX
-                */
+                 * @member egret.gui.UIStage#scaleX
+                 */
                 get: function () {
                     return this._scaleX;
                 },
                 /**
-                * @inheritDoc
-                */
+                 * @inheritDoc
+                 */
                 set: function (value) {
                     if (this._autoResize)
                         return;
@@ -220,18 +209,16 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(UIStage.prototype, "scaleY", {
                 /**
-                * @member egret.gui.UIStage#scaleY
-                */
+                 * @member egret.gui.UIStage#scaleY
+                 */
                 get: function () {
                     return this._scaleY;
                 },
                 /**
-                * @inheritDoc
-                */
+                 * @inheritDoc
+                 */
                 set: function (value) {
                     if (this._autoResize)
                         return;
@@ -240,46 +227,41 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             /**
-            * @method egret.gui.UIStage#setActualSize
-            * @param w {number}
-            * @param h {number}
-            */
+             * @method egret.gui.UIStage#setActualSize
+             * @param w {number}
+             * @param h {number}
+             */
             UIStage.prototype.setActualSize = function (w, h) {
                 if (this._autoResize)
                     return;
                 _super.prototype.setActualSize.call(this, w, h);
             };
-
             /**
-            * @method egret.gui.UIStage#setLayoutBoundsPosition
-            * @param x {number}
-            * @param y {number}
-            */
+             * @method egret.gui.UIStage#setLayoutBoundsPosition
+             * @param x {number}
+             * @param y {number}
+             */
             UIStage.prototype.setLayoutBoundsPosition = function (x, y) {
                 if (this._autoResize)
                     return;
                 _super.prototype.setLayoutBoundsPosition.call(this, x, y);
             };
-
             /**
-            * @method egret.gui.UIStage#setLayoutBoundsSize
-            * @param layoutWidth {number}
-            * @param layoutHeight {number}
-            */
+             * @method egret.gui.UIStage#setLayoutBoundsSize
+             * @param layoutWidth {number}
+             * @param layoutHeight {number}
+             */
             UIStage.prototype.setLayoutBoundsSize = function (layoutWidth, layoutHeight) {
                 if (this._autoResize)
                     return;
                 _super.prototype.setLayoutBoundsSize.call(this, layoutWidth, layoutHeight);
             };
-
             Object.defineProperty(UIStage.prototype, "layout", {
                 /**
-                * 布局对象,UIStage只接受BasicLayout
-                * @member egret.gui.UIStage#layout
-                */
+                 * 布局对象,UIStage只接受BasicLayout
+                 * @member egret.gui.UIStage#layout
+                 */
                 get: function () {
                     return this._layout;
                 },
@@ -290,59 +272,52 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
             Object.defineProperty(UIStage.prototype, "popUpContainer", {
                 /**
-                * 弹出窗口层容器。
-                * @member egret.gui.UIStage#popUpContainer
-                */
+                 * 弹出窗口层容器。
+                 * @member egret.gui.UIStage#popUpContainer
+                 */
                 get: function () {
                     if (!this._popUpContainer) {
                         this._popUpContainer = new gui.UILayer(this, "noTopMostIndex", "topMostIndex");
                     }
-
                     return this._popUpContainer;
                 },
                 enumerable: true,
                 configurable: true
             });
-
             Object.defineProperty(UIStage.prototype, "toolTipContainer", {
                 /**
-                * 工具提示层容器。
-                * @member egret.gui.UIStage#toolTipContainer
-                */
+                 * 工具提示层容器。
+                 * @member egret.gui.UIStage#toolTipContainer
+                 */
                 get: function () {
                     if (!this._toolTipContainer) {
                         this._toolTipContainer = new gui.UILayer(this, "topMostIndex", "toolTipIndex");
                     }
-
                     return this._toolTipContainer;
                 },
                 enumerable: true,
                 configurable: true
             });
-
             Object.defineProperty(UIStage.prototype, "cursorContainer", {
                 /**
-                * 鼠标样式层容器。
-                * @member egret.gui.UIStage#cursorContainer
-                */
+                 * 鼠标样式层容器。
+                 * @member egret.gui.UIStage#cursorContainer
+                 */
                 get: function () {
                     if (!this._cursorContainer) {
                         this._cursorContainer = new gui.UILayer(this, "toolTipIndex", "cursorIndex");
                     }
-
                     return this._cursorContainer;
                 },
                 enumerable: true,
                 configurable: true
             });
-
             Object.defineProperty(UIStage.prototype, "noTopMostIndex", {
                 /**
-                * 弹出窗口层的起始索引(包括)
-                */
+                 * 弹出窗口层的起始索引(包括)
+                 */
                 get: function () {
                     return this._noTopMostIndex;
                 },
@@ -354,12 +329,10 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(UIStage.prototype, "topMostIndex", {
                 /**
-                * 弹出窗口层结束索引(不包括)
-                */
+                 * 弹出窗口层结束索引(不包括)
+                 */
                 get: function () {
                     return this._topMostIndex;
                 },
@@ -371,12 +344,10 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(UIStage.prototype, "toolTipIndex", {
                 /**
-                * 工具提示层结束索引(不包括)
-                */
+                 * 工具提示层结束索引(不包括)
+                 */
                 get: function () {
                     return this._toolTipIndex;
                 },
@@ -388,12 +359,10 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(UIStage.prototype, "cursorIndex", {
                 /**
-                * 鼠标样式层结束索引(不包括)
-                */
+                 * 鼠标样式层结束索引(不包括)
+                 */
                 get: function () {
                     return this._cursorIndex;
                 },
@@ -404,29 +373,26 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             //==========================================================================
             //                                复写容器操作方法
             //==========================================================================
             /**
-            * @method egret.gui.UIStage#addElement
-            * @param element {IVisualElement}
-            * @returns {IVisualElement}
-            */
+             * @method egret.gui.UIStage#addElement
+             * @param element {IVisualElement}
+             * @returns {IVisualElement}
+             */
             UIStage.prototype.addElement = function (element) {
                 var addIndex = this._noTopMostIndex;
                 if (element.parent == this)
                     addIndex--;
                 return this.addElementAt(element, addIndex);
             };
-
             /**
-            * @method egret.gui.UIStage#addElementAt
-            * @param element {IVisualElement}
-            * @param index {number}
-            * @returns {IVisualElement}
-            */
+             * @method egret.gui.UIStage#addElementAt
+             * @param element {IVisualElement}
+             * @param index {number}
+             * @returns {IVisualElement}
+             */
             UIStage.prototype.addElementAt = function (element, index) {
                 if (element.parent == this) {
                     var oldIndex = this.getElementIndex(element);
@@ -439,7 +405,6 @@ var egret;
                     else
                         this.cursorIndex--;
                 }
-
                 if (index <= this._noTopMostIndex)
                     this.noTopMostIndex++;
                 else if (index > this._noTopMostIndex && index <= this._topMostIndex)
@@ -448,24 +413,21 @@ var egret;
                     this.toolTipIndex++;
                 else
                     this.cursorIndex++;
-
                 return _super.prototype.addElementAt.call(this, element, index);
             };
-
             /**
-            * @method egret.gui.UIStage#removeElement
-            * @param element {IVisualElement}
-            * @returns {IVisualElement}
-            */
+             * @method egret.gui.UIStage#removeElement
+             * @param element {IVisualElement}
+             * @returns {IVisualElement}
+             */
             UIStage.prototype.removeElement = function (element) {
                 return this.removeElementAt(_super.prototype.getElementIndex.call(this, element));
             };
-
             /**
-            * @method egret.gui.UIStage#removeElementAt
-            * @param index {number}
-            * @returns {IVisualElement}
-            */
+             * @method egret.gui.UIStage#removeElementAt
+             * @param index {number}
+             * @returns {IVisualElement}
+             */
             UIStage.prototype.removeElementAt = function (index) {
                 var element = _super.prototype.removeElementAt.call(this, index);
                 if (index < this._noTopMostIndex)
@@ -478,32 +440,29 @@ var egret;
                     this.cursorIndex--;
                 return element;
             };
-
             /**
-            * @method egret.gui.UIStage#removeAllElements
-            */
+             * @method egret.gui.UIStage#removeAllElements
+             */
             UIStage.prototype.removeAllElements = function () {
                 while (this._noTopMostIndex > 0) {
                     _super.prototype.removeElementAt.call(this, 0);
                     this.noTopMostIndex--;
                 }
             };
-
             /**
-            * @method egret.gui.UIStage#_elementRemoved
-            * @param element {IVisualElement}
-            * @param index {number}
-            * @param notifyListeners {boolean}
-            */
+             * @method egret.gui.UIStage#_elementRemoved
+             * @param element {IVisualElement}
+             * @param index {number}
+             * @param notifyListeners {boolean}
+             */
             UIStage.prototype._elementRemoved = function (element, index, notifyListeners) {
-                if (typeof notifyListeners === "undefined") { notifyListeners = true; }
+                if (notifyListeners === void 0) { notifyListeners = true; }
                 if (notifyListeners) {
                     //PopUpManager需要监听这个事件
                     egret.Event.dispatchEvent(element, "removeFromUIStage");
                 }
                 _super.prototype._elementRemoved.call(this, element, index, notifyListeners);
             };
-
             //==========================================================================
             //                                保留容器原始操作方法
             //==========================================================================
@@ -556,7 +515,6 @@ var egret;
             return UIStage;
         })(gui.Group);
         gui.UIStage = UIStage;
-        UIStage.prototype.__class__ = "egret.gui.UIStage";
-    })(egret.gui || (egret.gui = {}));
-    var gui = egret.gui;
+        UIStage.prototype.__class__ = "gui.UIStage";
+    })(gui = egret.gui || (egret.gui = {}));
 })(egret || (egret = {}));

@@ -6,18 +6,20 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var HSliderSkin = (function (_super) {
             __extends(HSliderSkin, _super);
             function HSliderSkin() {
                 _super.call(this);
-
                 this.minHeight = 13;
                 this.minWidth = 50;
                 this.elementsContent = [this.track_i(), this.trackHighlight_i(), this.thumb_i()];
                 this.states = [
-                    new egret.gui.State("normal", []),
-                    new egret.gui.State("disabled", [])
+                    new egret.gui.State("normal", [
+                    ]),
+                    new egret.gui.State("disabled", [
+                    ])
                 ];
             }
             Object.defineProperty(HSliderSkin.prototype, "skinParts", {
@@ -57,7 +59,6 @@ var skins;
             return HSliderSkin;
         })(egret.gui.Skin);
         simple.HSliderSkin = HSliderSkin;
-        HSliderSkin.prototype.__class__ = "skins.simple.HSliderSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        HSliderSkin.prototype.__class__ = "simple.HSliderSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

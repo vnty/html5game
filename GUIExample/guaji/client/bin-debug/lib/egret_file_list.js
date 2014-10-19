@@ -44,6 +44,7 @@ var egret_file_list = [
 "core/egret/text/TextFieldType.js",
 "core/egret/display/SpriteSheet.js",
 "core/egret/text/TextInput.js",
+"core/egret/text/InputController.js",
 "core/egret/text/BitmapTextSpriteSheet.js",
 "core/egret/display/MovieClip.js",
 "core/egret/context/display/StageText.js",

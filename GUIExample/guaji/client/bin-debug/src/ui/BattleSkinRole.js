@@ -10,13 +10,14 @@ var ui;
         __extends(BattleSkinRole, _super);
         function BattleSkinRole() {
             _super.call(this);
-
-            this.height = 178;
-            this.width = 299;
-            this.elementsContent = [this.pic_i(), this.__3_i(), this.data_i()];
+            this.height = 44;
+            this.width = 138;
+            this.elementsContent = [this.pic_i(), this.__3_i(), this.hp_i(), this.data_i(), this.hpText_i()];
             this.states = [
-                new egret.gui.State("normal", []),
-                new egret.gui.State("disabled", [])
+                new egret.gui.State("normal", [
+                ]),
+                new egret.gui.State("disabled", [
+                ])
             ];
         }
         Object.defineProperty(BattleSkinRole.prototype, "skinParts", {
@@ -36,6 +37,30 @@ var ui;
             t.width = 85;
             t.x = 12;
             t.y = 1;
+            return t;
+        };
+        BattleSkinRole.prototype.hpText_i = function () {
+            var t = new egret.gui.Label();
+            this.hpText = t;
+            t.height = 12;
+            t.size = 7;
+            t.text = "1500/50000";
+            t.textAlign = "center";
+            t.textColor = 0xFFFFFF;
+            t.width = 80;
+            t.x = 13;
+            t.y = 14;
+            return t;
+        };
+        BattleSkinRole.prototype.hp_i = function () {
+            var t = new egret.gui.UIAsset();
+            this.hp = t;
+            t.height = 9;
+            t.scale9Grid = egret.gui.getScale9Grid("4,6,2,2");
+            t.source = "img_27";
+            t.width = 85;
+            t.x = 11;
+            t.y = 14;
             return t;
         };
         BattleSkinRole.prototype.pic_i = function () {
@@ -58,7 +83,7 @@ var ui;
             t.y = 0;
             return t;
         };
-        BattleSkinRole._skinParts = ["pic", "data"];
+        BattleSkinRole._skinParts = ["pic", "hp", "data", "hpText"];
         return BattleSkinRole;
     })(egret.gui.Skin);
     ui.BattleSkinRole = BattleSkinRole;

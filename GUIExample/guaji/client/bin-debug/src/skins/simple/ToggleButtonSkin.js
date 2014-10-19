@@ -6,17 +6,18 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var ToggleButtonSkin = (function (_super) {
             __extends(ToggleButtonSkin, _super);
             function ToggleButtonSkin() {
                 _super.call(this);
-
                 this.height = 60;
                 this.minWidth = 140;
                 this.elementsContent = [this.__7_i(), this.labelDisplay_i()];
                 this.states = [
-                    new egret.gui.State("up", []),
+                    new egret.gui.State("up", [
+                    ]),
                     new egret.gui.State("down", [
                         new egret.gui.SetProperty("__7", "source", "togglebutton_over_png"),
                         new egret.gui.SetProperty("labelDisplay", "textColor", 0x1e7465)
@@ -72,7 +73,6 @@ var skins;
             return ToggleButtonSkin;
         })(egret.gui.Skin);
         simple.ToggleButtonSkin = ToggleButtonSkin;
-        ToggleButtonSkin.prototype.__class__ = "skins.simple.ToggleButtonSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        ToggleButtonSkin.prototype.__class__ = "simple.ToggleButtonSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

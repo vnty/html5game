@@ -6,19 +6,21 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var PanelSkin = (function (_super) {
             __extends(PanelSkin, _super);
             function PanelSkin() {
                 _super.call(this);
-
                 this.maxWidth = 710;
                 this.minHeight = 230;
                 this.minWidth = 470;
                 this.elementsContent = [this.__3_i(), this.moveArea_i(), this.contentGroup_i()];
                 this.states = [
-                    new egret.gui.State("normal", []),
-                    new egret.gui.State("disabled", [])
+                    new egret.gui.State("normal", [
+                    ]),
+                    new egret.gui.State("disabled", [
+                    ])
                 ];
             }
             Object.defineProperty(PanelSkin.prototype, "skinParts", {
@@ -83,7 +85,6 @@ var skins;
             return PanelSkin;
         })(egret.gui.Skin);
         simple.PanelSkin = PanelSkin;
-        PanelSkin.prototype.__class__ = "skins.simple.PanelSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        PanelSkin.prototype.__class__ = "simple.PanelSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

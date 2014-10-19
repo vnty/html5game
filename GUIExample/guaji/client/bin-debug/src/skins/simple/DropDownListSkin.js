@@ -6,12 +6,12 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var DropDownListSkin = (function (_super) {
             __extends(DropDownListSkin, _super);
             function DropDownListSkin() {
                 _super.call(this);
-
                 this.elementsContent = [this.openButton_i(), this.labelDisplay_i(), this.popUp_i()];
                 this.states = [
                     new egret.gui.State("normal", [
@@ -21,7 +21,8 @@ var skins;
                         new egret.gui.SetProperty("labelDisplay", "textColor", 0x222222),
                         new egret.gui.SetProperty("popUp", "displayPopUp", true)
                     ]),
-                    new egret.gui.State("disabled", [])
+                    new egret.gui.State("disabled", [
+                    ])
                 ];
             }
             Object.defineProperty(DropDownListSkin.prototype, "skinParts", {
@@ -95,7 +96,6 @@ var skins;
             return DropDownListSkin;
         })(egret.gui.Skin);
         simple.DropDownListSkin = DropDownListSkin;
-        DropDownListSkin.prototype.__class__ = "skins.simple.DropDownListSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        DropDownListSkin.prototype.__class__ = "simple.DropDownListSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

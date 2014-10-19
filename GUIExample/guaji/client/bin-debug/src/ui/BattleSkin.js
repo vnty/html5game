@@ -10,13 +10,16 @@ var ui;
         __extends(BattleSkin, _super);
         function BattleSkin() {
             _super.call(this);
-
             this.height = 834;
             this.width = 640;
-            this.elementsContent = [this.bg_i(), this.role3_i(), this.role5_i(), this.role2_i(), this.role1_i(), this.__3_i(), this.type_i(), this.role4_i()];
+            this.elementsContent = [this.bg_i(), this.role3_i(), this.role5_i(), this.__3_i(), this.type_i(), this.role4_i(), this.role1_i(), this.role2_i(), this.attackBtn_i()];
             this.states = [
-                new egret.gui.State("normal", []),
-                new egret.gui.State("disabled", [])
+                new egret.gui.State("normal", [
+                    new egret.gui.SetProperty("attackBtn", "x", 270),
+                    new egret.gui.SetProperty("attackBtn", "y", 261)
+                ]),
+                new egret.gui.State("disabled", [
+                ])
             ];
         }
         Object.defineProperty(BattleSkin.prototype, "skinParts", {
@@ -26,6 +29,16 @@ var ui;
             enumerable: true,
             configurable: true
         });
+        BattleSkin.prototype.attackBtn_i = function () {
+            var t = new egret.gui.Button();
+            this.attackBtn = t;
+            t.enabled = true;
+            t.label = "开始";
+            t.skinName = ui.Battl109Skin;
+            t.x = 257;
+            t.y = 255;
+            return t;
+        };
         BattleSkin.prototype.bg_i = function () {
             var t = new egret.gui.UIAsset();
             this.bg = t;
@@ -35,21 +48,23 @@ var ui;
             return t;
         };
         BattleSkin.prototype.role1_i = function () {
-            var t = new egret.gui.UIAsset();
+            var t = new egret.gui.SkinnableComponent();
             this.role1 = t;
-            t.source = "img_127";
-            t.x = 10;
-            t.y = 49;
+            t.height = 85;
+            t.skinName = ui.BattlePlayerSkin;
+            t.width = 288;
+            t.x = 14;
+            t.y = 36;
             return t;
         };
         BattleSkin.prototype.role2_i = function () {
-            var t = new egret.gui.UIAsset();
+            var t = new egret.gui.SkinnableComponent();
             this.role2 = t;
-            t.height = 42;
-            t.source = "img_128";
-            t.width = 136;
-            t.x = 26;
-            t.y = 162;
+            t.height = 40;
+            t.skinName = ui.BattlePetSkin;
+            t.width = 137;
+            t.x = 22;
+            t.y = 126;
             return t;
         };
         BattleSkin.prototype.role3_i = function () {
@@ -97,7 +112,7 @@ var ui;
             t.y = -4;
             return t;
         };
-        BattleSkin._skinParts = ["bg", "role3", "role5", "role2", "role1", "type", "role4"];
+        BattleSkin._skinParts = ["bg", "role3", "role5", "type", "role4", "role1", "role2", "attackBtn"];
         return BattleSkin;
     })(egret.gui.Skin);
     ui.BattleSkin = BattleSkin;

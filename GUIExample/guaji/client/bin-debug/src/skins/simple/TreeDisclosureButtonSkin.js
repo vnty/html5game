@@ -6,16 +6,17 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var TreeDisclosureButtonSkin = (function (_super) {
             __extends(TreeDisclosureButtonSkin, _super);
             function TreeDisclosureButtonSkin() {
                 _super.call(this);
-
                 this.minHeight = 22;
                 this.elementsContent = [this.__7_i()];
                 this.states = [
-                    new egret.gui.State("up", []),
+                    new egret.gui.State("up", [
+                    ]),
                     new egret.gui.State("down", [
                         new egret.gui.SetProperty("__7", "source", "tree_btndown_png")
                     ]),
@@ -44,7 +45,6 @@ var skins;
             return TreeDisclosureButtonSkin;
         })(egret.gui.Skin);
         simple.TreeDisclosureButtonSkin = TreeDisclosureButtonSkin;
-        TreeDisclosureButtonSkin.prototype.__class__ = "skins.simple.TreeDisclosureButtonSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        TreeDisclosureButtonSkin.prototype.__class__ = "simple.TreeDisclosureButtonSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

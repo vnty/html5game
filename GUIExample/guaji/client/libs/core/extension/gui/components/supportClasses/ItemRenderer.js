@@ -1,29 +1,29 @@
 /**
-* Copyright (c) 2014,Egret-Labs.org
-* All rights reserved.
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-*     * Redistributions of source code must retain the above copyright
-*       notice, this list of conditions and the following disclaimer.
-*     * Redistributions in binary form must reproduce the above copyright
-*       notice, this list of conditions and the following disclaimer in the
-*       documentation and/or other materials provided with the distribution.
-*     * Neither the name of the Egret-Labs.org nor the
-*       names of its contributors may be used to endorse or promote products
-*       derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
-* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * Copyright (c) 2014,Egret-Labs.org
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Egret-Labs.org nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -32,19 +32,20 @@ var __extends = this.__extends || function (d, b) {
 };
 var egret;
 (function (egret) {
+    var gui;
     (function (gui) {
         /**
-        * @class egret.gui.ItemRenderer
-        * @classdesc
-        * 项呈示器基类
-        * @extends egret.gui.ButtonBase
-        * @implements egret.gui.IItemRenderer
-        */
+         * @class egret.gui.ItemRenderer
+         * @classdesc
+         * 项呈示器基类
+         * @extends egret.gui.ButtonBase
+         * @implements egret.gui.IItemRenderer
+         */
         var ItemRenderer = (function (_super) {
             __extends(ItemRenderer, _super);
             /**
-            * @method egret.gui.ItemRenderer#constructor
-            */
+             * @method egret.gui.ItemRenderer#constructor
+             */
             function ItemRenderer() {
                 _super.call(this);
                 this.dataChangedFlag = false;
@@ -55,8 +56,8 @@ var egret;
             }
             Object.defineProperty(ItemRenderer.prototype, "data", {
                 /**
-                * @member egret.gui.ItemRenderer#data
-                */
+                 * @member egret.gui.ItemRenderer#data
+                 */
                 get: function () {
                     return this._data;
                 },
@@ -66,7 +67,8 @@ var egret;
                     if (this.initialized || this.parent) {
                         this.dataChangedFlag = false;
                         this.dataChanged();
-                    } else {
+                    }
+                    else {
                         this.dataChangedFlag = true;
                         this.invalidateProperties();
                     }
@@ -74,20 +76,17 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             /**
-            * 子类复写此方法以在data数据源发生改变时跟新显示列表。
-            * 与直接复写_data的setter方法不同，它会确保在皮肤已经附加完成后再被调用。
-            * @method egret.gui.ItemRenderer#dataChanged
-            */
+             * 子类复写此方法以在data数据源发生改变时跟新显示列表。
+             * 与直接复写_data的setter方法不同，它会确保在皮肤已经附加完成后再被调用。
+             * @method egret.gui.ItemRenderer#dataChanged
+             */
             ItemRenderer.prototype.dataChanged = function () {
             };
-
             Object.defineProperty(ItemRenderer.prototype, "selected", {
                 /**
-                * @member egret.gui.ItemRenderer#selected
-                */
+                 * @member egret.gui.ItemRenderer#selected
+                 */
                 get: function () {
                     return this._selected;
                 },
@@ -100,12 +99,10 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(ItemRenderer.prototype, "itemIndex", {
                 /**
-                * @member egret.gui.ItemRenderer#itemIndex
-                */
+                 * @member egret.gui.ItemRenderer#itemIndex
+                 */
                 get: function () {
                     return this._itemIndex;
                 },
@@ -115,11 +112,9 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             /**
-            * @method egret.gui.ItemRenderer#commitProperties
-            */
+             * @method egret.gui.ItemRenderer#commitProperties
+             */
             ItemRenderer.prototype.commitProperties = function () {
                 _super.prototype.commitProperties.call(this);
                 if (this.dataChangedFlag) {
@@ -127,11 +122,10 @@ var egret;
                     this.dataChanged();
                 }
             };
-
             /**
-            * @method egret.gui.ItemRenderer#getCurrentSkinState
-            * @returns {string}
-            */
+             * @method egret.gui.ItemRenderer#getCurrentSkinState
+             * @returns {string}
+             */
             ItemRenderer.prototype.getCurrentSkinState = function () {
                 if (this._selected)
                     return "down";
@@ -140,7 +134,6 @@ var egret;
             return ItemRenderer;
         })(gui.ButtonBase);
         gui.ItemRenderer = ItemRenderer;
-        ItemRenderer.prototype.__class__ = "egret.gui.ItemRenderer";
-    })(egret.gui || (egret.gui = {}));
-    var gui = egret.gui;
+        ItemRenderer.prototype.__class__ = "gui.ItemRenderer";
+    })(gui = egret.gui || (egret.gui = {}));
 })(egret || (egret = {}));

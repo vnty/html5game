@@ -1,29 +1,29 @@
 /**
-* Copyright (c) 2014,Egret-Labs.org
-* All rights reserved.
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-*     * Redistributions of source code must retain the above copyright
-*       notice, this list of conditions and the following disclaimer.
-*     * Redistributions in binary form must reproduce the above copyright
-*       notice, this list of conditions and the following disclaimer in the
-*       documentation and/or other materials provided with the distribution.
-*     * Neither the name of the Egret-Labs.org nor the
-*       names of its contributors may be used to endorse or promote products
-*       derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
-* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * Copyright (c) 2014,Egret-Labs.org
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Egret-Labs.org nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -32,72 +32,71 @@ var __extends = this.__extends || function (d, b) {
 };
 var egret;
 (function (egret) {
+    var gui;
     (function (gui) {
         /**
-        * @class egret.gui.DataGroup
-        * @classdesc
-        * 数据项目的容器基类
-        * 将数据项目转换为可视元素以进行显示。
-        * @extends egret.gui.GroupBase
-        */
+         * @class egret.gui.DataGroup
+         * @classdesc
+         * 数据项目的容器基类
+         * 将数据项目转换为可视元素以进行显示。
+         * @extends egret.gui.GroupBase
+         */
         var DataGroup = (function (_super) {
             __extends(DataGroup, _super);
             /**
-            * 构造函数
-            * @method egret.gui.DataGroup#constructor
-            */
+             * 构造函数
+             * @method egret.gui.DataGroup#constructor
+             */
             function DataGroup() {
                 _super.call(this);
                 this.useVirtualLayoutChanged = false;
                 this.rendererToClassMap = [];
                 this.freeRenderers = [];
                 /**
-                * 是否创建了新的项呈示器标志
-                */
+                 * 是否创建了新的项呈示器标志
+                 */
                 this.createNewRendererFlag = false;
                 this.dataProviderChanged = false;
                 /**
-                * 对象池字典
-                */
+                 * 对象池字典
+                 */
                 this.recyclerDic = [];
                 this.itemRendererSkinNameChange = false;
                 /**
-                * 正在进行虚拟布局阶段
-                */
+                 * 正在进行虚拟布局阶段
+                 */
                 this.virtualLayoutUnderway = false;
                 this.typicalItemChanged = false;
                 /**
-                * 索引到项呈示器的转换数组
-                */
+                 * 索引到项呈示器的转换数组
+                 */
                 this.indexToRenderer = [];
                 /**
-                * 清理freeRenderer标志
-                */
+                 * 清理freeRenderer标志
+                 */
                 this.cleanFreeRenderer = false;
                 /**
-                * 正在更新数据项的标志
-                */
+                 * 正在更新数据项的标志
+                 */
                 this.renderersBeingUpdated = false;
             }
             Object.defineProperty(DataGroup.prototype, "layout", {
                 /**
-                * @member egret.gui.DataGroup#layout
-                */
+                 * @member egret.gui.DataGroup#layout
+                 */
                 get: function () {
                     return this._layout;
                 },
                 /**
-                * @inheritDoc
-                */
+                 * @inheritDoc
+                 */
                 set: function (value) {
                     if (value == this.layout)
                         return;
-
                     if (this.layout) {
                         this.layout.typicalLayoutRect = null;
                         this.layout.removeEventListener("useVirtualLayoutChanged", this.layout_useVirtualLayoutChangedHandler, this);
                     }
-
                     if (this.layout && value && (this.layout.useVirtualLayout != value.useVirtualLayout))
                         this.changeUseVirtualLayout();
                     this._setLayout(value);
@@ -109,20 +108,17 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             /**
-            * 是否使用虚拟布局标记改变
-            */
+             * 是否使用虚拟布局标记改变
+             */
             DataGroup.prototype.layout_useVirtualLayoutChangedHandler = function (event) {
                 this.changeUseVirtualLayout();
             };
-
             /**
-            * @method egret.gui.DataGroup#setVirtualElementIndicesInView
-            * @param startIndex {number}
-            * @param endIndex {number}
-            */
+             * @method egret.gui.DataGroup#setVirtualElementIndicesInView
+             * @param startIndex {number}
+             * @param endIndex {number}
+             */
             DataGroup.prototype.setVirtualElementIndicesInView = function (startIndex, endIndex) {
                 if (!this.layout || !this.layout.useVirtualLayout)
                     return;
@@ -137,12 +133,11 @@ var egret;
                     }
                 }
             };
-
             /**
-            * @method egret.gui.DataGroup#getVirtualElementAt
-            * @param index {number}
-            * @returns {IVisualElement}
-            */
+             * @method egret.gui.DataGroup#getVirtualElementAt
+             * @param index {number}
+             * @returns {IVisualElement}
+             */
             DataGroup.prototype.getVirtualElementAt = function (index) {
                 if (index < 0 || index >= this.dataProvider.length)
                     return null;
@@ -162,10 +157,9 @@ var egret;
                 }
                 return element;
             };
-
             /**
-            * 释放指定索引处的项呈示器
-            */
+             * 释放指定索引处的项呈示器
+             */
             DataGroup.prototype.freeRendererByIndex = function (index) {
                 if (!this.indexToRenderer[index])
                     return;
@@ -175,10 +169,9 @@ var egret;
                     this.doFreeRenderer(renderer);
                 }
             };
-
             /**
-            * 释放指定的项呈示器
-            */
+             * 释放指定的项呈示器
+             */
             DataGroup.prototype.doFreeRenderer = function (renderer) {
                 var rendererFactory = this.rendererToClassMap[renderer.hashCode];
                 var hashCode = rendererFactory.hashCode;
@@ -188,18 +181,16 @@ var egret;
                 this.freeRenderers[hashCode].push(renderer);
                 renderer.visible = false;
             };
-
             /**
-            * @method egret.gui.DataGroup#invalidateSize
-            */
+             * @method egret.gui.DataGroup#invalidateSize
+             */
             DataGroup.prototype.invalidateSize = function () {
                 if (!this.createNewRendererFlag)
                     _super.prototype.invalidateSize.call(this);
             };
-
             /**
-            * 为指定索引创建虚拟的项呈示器
-            */
+             * 为指定索引创建虚拟的项呈示器
+             */
             DataGroup.prototype.createVirtualRenderer = function (index) {
                 var item = this.dataProvider.getItemAt(index);
                 var renderer;
@@ -214,10 +205,9 @@ var egret;
                 this.createNewRendererFlag = true;
                 return this.createOneRenderer(rendererFactory);
             };
-
             /**
-            * 根据rendererClass创建一个Renderer,并添加到显示列表
-            */
+             * 根据rendererClass创建一个Renderer,并添加到显示列表
+             */
             DataGroup.prototype.createOneRenderer = function (rendererFactory) {
                 var renderer;
                 var hashCode = rendererFactory.hashCode;
@@ -240,10 +230,9 @@ var egret;
                 renderer.setLayoutBoundsSize(NaN, NaN);
                 return renderer;
             };
-
             /**
-            * 设置项呈示器的默认皮肤
-            */
+             * 设置项呈示器的默认皮肤
+             */
             DataGroup.prototype.setItemRenderSkinName = function (renderer) {
                 if (!renderer)
                     return;
@@ -251,16 +240,16 @@ var egret;
                 if (comp) {
                     if (!comp._skinNameExplicitlySet)
                         comp.skinName = this._itemRendererSkinName;
-                } else {
+                }
+                else {
                     var client = renderer;
                     if (client && !client.skinName)
                         client.skinName = this._itemRendererSkinName;
                 }
             };
-
             /**
-            * 虚拟布局结束清理不可见的项呈示器
-            */
+             * 虚拟布局结束清理不可见的项呈示器
+             */
             DataGroup.prototype.finishVirtualLayout = function () {
                 if (!this.virtualLayoutUnderway)
                     return;
@@ -278,17 +267,15 @@ var egret;
                     this.cleanTimer = new egret.Timer(3000, 1);
                     this.cleanTimer.addEventListener(egret.TimerEvent.TIMER, this.cleanAllFreeRenderer, this);
                 }
-
                 //为了提高持续滚动过程中的性能，防止反复地添加移除子项，这里不直接清理而是延迟后在滚动停止时清理一次。
                 this.cleanTimer.reset();
                 this.cleanTimer.start();
             };
-
             /**
-            * 延迟清理多余的在显示列表中的ItemRenderer。
-            */
+             * 延迟清理多余的在显示列表中的ItemRenderer。
+             */
             DataGroup.prototype.cleanAllFreeRenderer = function (event) {
-                if (typeof event === "undefined") { event = null; }
+                if (event === void 0) { event = null; }
                 var renderer;
                 var freeRenderers = this.freeRenderers;
                 for (var hashCode in freeRenderers) {
@@ -303,32 +290,29 @@ var egret;
                 this.freeRenderers = [];
                 this.cleanFreeRenderer = false;
             };
-
             /**
-            * @method egret.gui.DataGroup#getElementIndicesInView
-            * @returns {number}
-            */
+             * @method egret.gui.DataGroup#getElementIndicesInView
+             * @returns {number}
+             */
             DataGroup.prototype.getElementIndicesInView = function () {
                 if (this.layout && this.layout.useVirtualLayout)
                     return this.virtualRendererIndices ? this.virtualRendererIndices : [];
                 return _super.prototype.getElementIndicesInView.call(this);
             };
-
             /**
-            * 更改是否使用虚拟布局
-            */
+             * 更改是否使用虚拟布局
+             */
             DataGroup.prototype.changeUseVirtualLayout = function () {
                 this.useVirtualLayoutChanged = true;
                 this.cleanFreeRenderer = true;
                 this.removeDataProviderListener();
                 this.invalidateProperties();
             };
-
             Object.defineProperty(DataGroup.prototype, "dataProvider", {
                 /**
-                * 列表数据源，请使用实现了ICollection接口的数据类型，例如ArrayCollection
-                * @member egret.gui.DataGroup#dataProvider
-                */
+                 * 列表数据源，请使用实现了ICollection接口的数据类型，例如ArrayCollection
+                 * @member egret.gui.DataGroup#dataProvider
+                 */
                 get: function () {
                     return this._dataProvider;
                 },
@@ -346,19 +330,16 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             /**
-            * 移除数据源监听
-            */
+             * 移除数据源监听
+             */
             DataGroup.prototype.removeDataProviderListener = function () {
                 if (this._dataProvider)
                     this._dataProvider.removeEventListener(gui.CollectionEvent.COLLECTION_CHANGE, this.onCollectionChange, this);
             };
-
             /**
-            * 数据源改变事件处理
-            */
+             * 数据源改变事件处理
+             */
             DataGroup.prototype.onCollectionChange = function (event) {
                 switch (event.kind) {
                     case gui.CollectionEventKind.ADD:
@@ -392,10 +373,9 @@ var egret;
                 this.invalidateSize();
                 this.invalidateDisplayList();
             };
-
             /**
-            * 数据源添加项目事件处理
-            */
+             * 数据源添加项目事件处理
+             */
             DataGroup.prototype.itemAddedHandler = function (items, index) {
                 var length = items.length;
                 for (var i = 0; i < length; i++) {
@@ -403,35 +383,30 @@ var egret;
                 }
                 this.resetRenderersIndices();
             };
-
             /**
-            * 数据源移动项目事件处理
-            */
+             * 数据源移动项目事件处理
+             */
             DataGroup.prototype.itemMovedHandler = function (item, location, oldLocation) {
                 this.itemRemoved(item, oldLocation);
                 this.itemAdded(item, location);
                 this.resetRenderersIndices();
             };
-
             /**
-            * 数据源移除项目事件处理
-            */
+             * 数据源移除项目事件处理
+             */
             DataGroup.prototype.itemRemovedHandler = function (items, location) {
                 var length = items.length;
                 for (var i = length - 1; i >= 0; i--) {
                     this.itemRemoved(items[i], location + i);
                 }
-
                 this.resetRenderersIndices();
             };
-
             /**
-            * 添加一项
-            */
+             * 添加一项
+             */
             DataGroup.prototype.itemAdded = function (item, index) {
                 if (this.layout)
                     this.layout.elementAdded(index);
-
                 if (this.layout && this.layout.useVirtualLayout) {
                     var virtualRendererIndices = this.virtualRendererIndices;
                     if (virtualRendererIndices) {
@@ -453,10 +428,9 @@ var egret;
                 this.updateRenderer(renderer, index, item);
                 gui.RendererExistenceEvent.dispatchRendererExistenceEvent(this, gui.RendererExistenceEvent.RENDERER_ADD, renderer, index, item);
             };
-
             /**
-            * 移除一项
-            */
+             * 移除一项
+             */
             DataGroup.prototype.itemRemoved = function (item, index) {
                 if (this.layout)
                     this.layout.elementRemoved(index);
@@ -475,20 +449,16 @@ var egret;
                         virtualRendererIndices.splice(vrItemIndex, 1);
                 }
                 var oldRenderer = this.indexToRenderer[index];
-
                 if (this.indexToRenderer.length > index)
                     this.indexToRenderer.splice(index, 1);
-
                 gui.RendererExistenceEvent.dispatchRendererExistenceEvent(this, gui.RendererExistenceEvent.RENDERER_REMOVE, oldRenderer, index, item);
-
                 if (oldRenderer && oldRenderer instanceof egret.DisplayObject) {
                     this.recycle(oldRenderer);
                 }
             };
-
             /**
-            * 回收一个ItemRenderer实例
-            */
+             * 回收一个ItemRenderer实例
+             */
             DataGroup.prototype.recycle = function (renderer) {
                 this._removeFromDisplayList(renderer);
                 if ("ownerChanged" in renderer) {
@@ -501,14 +471,12 @@ var egret;
                 }
                 this.recyclerDic[hashCode].push(renderer);
             };
-
             /**
-            * 更新当前所有项的索引
-            */
+             * 更新当前所有项的索引
+             */
             DataGroup.prototype.resetRenderersIndices = function () {
                 if (this.indexToRenderer.length == 0)
                     return;
-
                 if (this.layout && this.layout.useVirtualLayout) {
                     var virtualRendererIndices = this.virtualRendererIndices;
                     var length = virtualRendererIndices.length;
@@ -516,40 +484,37 @@ var egret;
                         var index = virtualRendererIndices[i];
                         this.resetRendererItemIndex(index);
                     }
-                } else {
+                }
+                else {
                     var indexToRendererLength = this.indexToRenderer.length;
                     for (index = 0; index < indexToRendererLength; index++)
                         this.resetRendererItemIndex(index);
                 }
             };
-
             /**
-            * 数据源更新或替换项目事件处理
-            */
+             * 数据源更新或替换项目事件处理
+             */
             DataGroup.prototype.itemUpdatedHandler = function (item, location) {
                 if (this.renderersBeingUpdated)
-                    return;
-
+                    return; //防止无限循环
                 var renderer = this.indexToRenderer[location];
                 if (renderer)
                     this.updateRenderer(renderer, location, item);
             };
-
             /**
-            * 调整指定项呈示器的索引值
-            */
+             * 调整指定项呈示器的索引值
+             */
             DataGroup.prototype.resetRendererItemIndex = function (index) {
                 var renderer = (this.indexToRenderer[index]);
                 if (renderer)
                     renderer.itemIndex = index;
             };
-
             Object.defineProperty(DataGroup.prototype, "itemRenderer", {
                 /**
-                * 用于数据项目的项呈示器。该类必须实现 IItemRenderer 接口。<br/>
-                * rendererClass获取顺序：itemRendererFunction > itemRenderer > 默认ItemRenerer。
-                * @member egret.gui.DataGroup#itemRenderer
-                */
+                 * 用于数据项目的项呈示器。该类必须实现 IItemRenderer 接口。<br/>
+                 * rendererClass获取顺序：itemRendererFunction > itemRenderer > 默认ItemRenerer。
+                 * @member egret.gui.DataGroup#itemRenderer
+                 */
                 get: function () {
                     return this._itemRenderer;
                 },
@@ -566,14 +531,12 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             Object.defineProperty(DataGroup.prototype, "itemRendererSkinName", {
                 /**
-                * 条目渲染器的可选皮肤标识符。在实例化itemRenderer时，若其内部没有设置过skinName,则将此属性的值赋值给它的skinName。
-                * 注意:若itemRenderer不是ISkinnableClient，则此属性无效。
-                * @member egret.gui.DataGroup#itemRendererSkinName
-                */
+                 * 条目渲染器的可选皮肤标识符。在实例化itemRenderer时，若其内部没有设置过skinName,则将此属性的值赋值给它的skinName。
+                 * 注意:若itemRenderer不是ISkinnableClient，则此属性无效。
+                 * @member egret.gui.DataGroup#itemRendererSkinName
+                 */
                 get: function () {
                     return this._itemRendererSkinName;
                 },
@@ -589,15 +552,14 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
             Object.defineProperty(DataGroup.prototype, "itemRendererFunction", {
                 /**
-                * 为某个特定项目返回一个项呈示器Class的函数。<br/>
-                * rendererClass获取顺序：itemRendererFunction > itemRenderer > 默认ItemRenerer。<br/>
-                * 应该定义一个与此示例函数类似的呈示器函数： <br/>
-                * function myItemRendererFunction(item:Object):IFactory
-                * @member egret.gui.DataGroup#itemRendererFunction
-                */
+                 * 为某个特定项目返回一个项呈示器Class的函数。<br/>
+                 * rendererClass获取顺序：itemRendererFunction > itemRenderer > 默认ItemRenerer。<br/>
+                 * 应该定义一个与此示例函数类似的呈示器函数： <br/>
+                 * function myItemRendererFunction(item:Object):IFactory
+                 * @member egret.gui.DataGroup#itemRendererFunction
+                 */
                 get: function () {
                     return this._itemRendererFunction;
                 },
@@ -605,7 +567,6 @@ var egret;
                     if (this._itemRendererFunction == value)
                         return;
                     this._itemRendererFunction = value;
-
                     this.itemRendererChanged = true;
                     this.typicalItemChanged = true;
                     this.removeDataProviderListener();
@@ -614,29 +575,27 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
-
             /**
-            * 为特定的数据项返回项呈示器的工厂实例
-            */
+             * 为特定的数据项返回项呈示器的工厂实例
+             */
             DataGroup.prototype.itemToRendererClass = function (item) {
                 var rendererFactory;
                 if (this._itemRendererFunction != null) {
                     rendererFactory = this._itemRendererFunction(item);
                     if (!rendererFactory)
                         rendererFactory = this._itemRenderer;
-                } else {
+                }
+                else {
                     rendererFactory = this._itemRenderer;
                 }
                 return rendererFactory ? rendererFactory : DataGroup.defaultRendererFactory;
             };
-
             /**
-            * @method egret.gui.DataGroup#createChildren
-            * 设置默认的ItemRenderer
-            * @private
-            *
-            */
+             * @method egret.gui.DataGroup#createChildren
+             * 设置默认的ItemRenderer
+             * @private
+             *
+             */
             DataGroup.prototype.createChildren = function () {
                 if (!this.layout) {
                     var _layout = new gui.VerticalLayout();
@@ -646,10 +605,9 @@ var egret;
                 }
                 _super.prototype.createChildren.call(this);
             };
-
             /**
-            * @method egret.gui.DataGroup#commitProperties
-            */
+             * @method egret.gui.DataGroup#commitProperties
+             */
             DataGroup.prototype.commitProperties = function () {
                 if (this.itemRendererChanged || this.dataProviderChanged || this.useVirtualLayoutChanged) {
                     this.removeAllRenderers();
@@ -663,7 +621,8 @@ var egret;
                     if (this.layout && this.layout.useVirtualLayout) {
                         this.invalidateSize();
                         this.invalidateDisplayList();
-                    } else {
+                    }
+                    else {
                         this.createRenderers();
                     }
                     if (this.dataProviderChanged) {
@@ -671,9 +630,7 @@ var egret;
                         this.verticalScrollPosition = this.horizontalScrollPosition = 0;
                     }
                 }
-
                 _super.prototype.commitProperties.call(this);
-
                 if (this.typicalItemChanged) {
                     this.typicalItemChanged = false;
                     if (this._dataProvider && this._dataProvider.length > 0) {
@@ -699,22 +656,20 @@ var egret;
                     }
                 }
             };
-
             /**
-            * @method egret.gui.DataGroup#measure
-            */
+             * @method egret.gui.DataGroup#measure
+             */
             DataGroup.prototype.measure = function () {
                 if (this.layout && this.layout.useVirtualLayout) {
                     this.ensureTypicalLayoutElement();
                 }
                 _super.prototype.measure.call(this);
             };
-
             /**
-            * @method egret.gui.DataGroup#updateDisplayList
-            * @param unscaledWidth {number}
-            * @param unscaledHeight {number}
-            */
+             * @method egret.gui.DataGroup#updateDisplayList
+             * @param unscaledWidth {number}
+             * @param unscaledHeight {number}
+             */
             DataGroup.prototype.updateDisplayList = function (unscaledWidth, unscaledHeight) {
                 if (this._layoutInvalidateDisplayListFlag && this.layout && this.layout.useVirtualLayout) {
                     this.virtualLayoutUnderway = true;
@@ -724,23 +679,20 @@ var egret;
                 if (this.virtualLayoutUnderway)
                     this.finishVirtualLayout();
             };
-
             /**
-            * 确保测量过默认条目大小。
-            */
+             * 确保测量过默认条目大小。
+             */
             DataGroup.prototype.ensureTypicalLayoutElement = function () {
                 if (this.layout.typicalLayoutRect)
                     return;
-
                 if (this._dataProvider && this._dataProvider.length > 0) {
                     this.typicalItem = this._dataProvider.getItemAt(0);
                     this.measureRendererSize();
                 }
             };
-
             /**
-            * 测量项呈示器默认尺寸
-            */
+             * 测量项呈示器默认尺寸
+             */
             DataGroup.prototype.measureRendererSize = function () {
                 if (!this.typicalItem) {
                     this.setTypicalLayoutRect(null);
@@ -761,19 +713,17 @@ var egret;
                 this.setTypicalLayoutRect(rect);
                 this.createNewRendererFlag = false;
             };
-
             /**
-            * 设置项目默认大小
-            */
+             * 设置项目默认大小
+             */
             DataGroup.prototype.setTypicalLayoutRect = function (rect) {
                 this.typicalLayoutRect = rect;
                 if (this.layout)
                     this.layout.typicalLayoutRect = rect;
             };
-
             /**
-            * 移除所有项呈示器
-            */
+             * 移除所有项呈示器
+             */
             DataGroup.prototype.removeAllRenderers = function () {
                 var length = this.indexToRenderer.length;
                 var renderer;
@@ -790,10 +740,9 @@ var egret;
                     return;
                 this.cleanAllFreeRenderer();
             };
-
             /**
-            * 为数据项创建项呈示器
-            */
+             * 为数据项创建项呈示器
+             */
             DataGroup.prototype.createRenderers = function () {
                 if (!this._dataProvider)
                     return;
@@ -811,21 +760,20 @@ var egret;
                     index++;
                 }
             };
-
             /**
-            * 更新项呈示器
-            * @method egret.gui.DataGroup#updateRenderer
-            * @param renderer {IItemRenderer}
-            * @param itemIndex {number}
-            * @param data {any}
-            * @returns {IItemRenderer}
-            */
+             * 更新项呈示器
+             * @method egret.gui.DataGroup#updateRenderer
+             * @param renderer {IItemRenderer}
+             * @param itemIndex {number}
+             * @param data {any}
+             * @returns {IItemRenderer}
+             */
             DataGroup.prototype.updateRenderer = function (renderer, itemIndex, data) {
                 this.renderersBeingUpdated = true;
-
                 if (this._rendererOwner) {
                     renderer = this._rendererOwner.updateRenderer(renderer, itemIndex, data);
-                } else {
+                }
+                else {
                     if ("ownerChanged" in renderer) {
                         renderer.ownerChanged(this);
                     }
@@ -833,49 +781,44 @@ var egret;
                     renderer.label = this.itemToLabel(data);
                     renderer.data = data;
                 }
-
                 this.renderersBeingUpdated = false;
                 return renderer;
             };
-
             /**
-            * 返回可在项呈示器中显示的 String。
-            * 若DataGroup被作为SkinnableDataContainer的皮肤组件,此方法将不会执行，被SkinnableDataContainer.itemToLabel()所替代。
-            * @method egret.gui.DataGroup#itemToLabel
-            * @param item {any}
-            * @returns {string}
-            */
+             * 返回可在项呈示器中显示的 String。
+             * 若DataGroup被作为SkinnableDataContainer的皮肤组件,此方法将不会执行，被SkinnableDataContainer.itemToLabel()所替代。
+             * @method egret.gui.DataGroup#itemToLabel
+             * @param item {any}
+             * @returns {string}
+             */
             DataGroup.prototype.itemToLabel = function (item) {
                 if (item)
                     return item.toString();
                 else
                     return " ";
             };
-
             /**
-            * @method egret.gui.DataGroup#getElementAt
-            * @param index {number}
-            * @returns {IVisualElement}
-            */
+             * @method egret.gui.DataGroup#getElementAt
+             * @param index {number}
+             * @returns {IVisualElement}
+             */
             DataGroup.prototype.getElementAt = function (index) {
                 return this.indexToRenderer[index];
             };
-
             /**
-            * @method egret.gui.DataGroup#getElementIndex
-            * @param element {IVisualElement}
-            * @returns {number}
-            */
+             * @method egret.gui.DataGroup#getElementIndex
+             * @param element {IVisualElement}
+             * @returns {number}
+             */
             DataGroup.prototype.getElementIndex = function (element) {
                 if (!element)
                     return -1;
                 return this.indexToRenderer.indexOf(element);
             };
-
             Object.defineProperty(DataGroup.prototype, "numElements", {
                 /**
-                * @member egret.gui.DataGroup#numElements
-                */
+                 * @member egret.gui.DataGroup#numElements
+                 */
                 get: function () {
                     if (!this._dataProvider)
                         return 0;
@@ -884,84 +827,79 @@ var egret;
                 enumerable: true,
                 configurable: true
             });
-
             /**
-            * @method egret.gui.DataGroup#addChild
-            * @deprecated
-            * @param child {DisplayObject}
-            * @returns {DisplayObject}
-            */
+             * @method egret.gui.DataGroup#addChild
+             * @deprecated
+             * @param child {DisplayObject}
+             * @returns {DisplayObject}
+             */
             DataGroup.prototype.addChild = function (child) {
                 throw (new Error("addChild()" + DataGroup.errorStr + "addElement()代替"));
             };
-
             /**
-            * @method egret.gui.DataGroup#addChildAt
-            * @deprecated
-            * @param child {DisplayObject}
-            * @param index {number}
-            * @returns {DisplayObject}
-            */
+             * @method egret.gui.DataGroup#addChildAt
+             * @deprecated
+             * @param child {DisplayObject}
+             * @param index {number}
+             * @returns {DisplayObject}
+             */
             DataGroup.prototype.addChildAt = function (child, index) {
                 throw (new Error("addChildAt()" + DataGroup.errorStr + "addElementAt()代替"));
             };
-
             /**
-            * @method egret.gui.DataGroup#removeChild
-            * @deprecated
-            * @param child {DisplayObject}
-            * @returns {DisplayObject}
-            */
+             * @method egret.gui.DataGroup#removeChild
+             * @deprecated
+             * @param child {DisplayObject}
+             * @returns {DisplayObject}
+             */
             DataGroup.prototype.removeChild = function (child) {
                 throw (new Error("removeChild()" + DataGroup.errorStr + "removeElement()代替"));
             };
-
             /**
-            * @method egret.gui.DataGroup#removeChildAt
-            * @deprecated
-            * @param index {number}
-            * @returns {DisplayObject}
-            */
+             * @method egret.gui.DataGroup#removeChildAt
+             * @deprecated
+             * @param index {number}
+             * @returns {DisplayObject}
+             */
             DataGroup.prototype.removeChildAt = function (index) {
                 throw (new Error("removeChildAt()" + DataGroup.errorStr + "removeElementAt()代替"));
             };
-
             /**
-            * @method egret.gui.DataGroup#setChildIndex
-            * @deprecated
-            * @param child {DisplayObject}
-            * @param index {number}
-            */
+             * @method egret.gui.DataGroup#setChildIndex
+             * @deprecated
+             * @param child {DisplayObject}
+             * @param index {number}
+             */
             DataGroup.prototype.setChildIndex = function (child, index) {
                 throw (new Error("setChildIndex()" + DataGroup.errorStr + "setElementIndex()代替"));
             };
-
             /**
-            * @method egret.gui.DataGroup#swapChildren
-            * @deprecated
-            * @param child1 {DisplayObject}
-            * @param child2 {DisplayObject}
-            */
+             * @method egret.gui.DataGroup#swapChildren
+             * @deprecated
+             * @param child1 {DisplayObject}
+             * @param child2 {DisplayObject}
+             */
             DataGroup.prototype.swapChildren = function (child1, child2) {
                 throw (new Error("swapChildren()" + DataGroup.errorStr + "swapElements()代替"));
             };
-
             /**
-            * @method egret.gui.DataGroup#swapChildrenAt
-            * @deprecated
-            * @param index1 {number}
-            * @param index2 {number}
-            */
+             * @method egret.gui.DataGroup#swapChildrenAt
+             * @deprecated
+             * @param index1 {number}
+             * @param index2 {number}
+             */
             DataGroup.prototype.swapChildrenAt = function (index1, index2) {
                 throw (new Error("swapChildrenAt()" + DataGroup.errorStr + "swapElementsAt()代替"));
             };
+            /**
+             * @method egret.gui.DataGroup.defaultRendererFactory
+             * @param ClassFactory {any}
+             */
             DataGroup.defaultRendererFactory = new gui.ClassFactory(gui.ItemRenderer);
-
             DataGroup.errorStr = "在此组件中不可用，若此组件为容器类，请使用";
             return DataGroup;
         })(gui.GroupBase);
         gui.DataGroup = DataGroup;
-        DataGroup.prototype.__class__ = "egret.gui.DataGroup";
-    })(egret.gui || (egret.gui = {}));
-    var gui = egret.gui;
+        DataGroup.prototype.__class__ = "gui.DataGroup";
+    })(gui = egret.gui || (egret.gui = {}));
 })(egret || (egret = {}));

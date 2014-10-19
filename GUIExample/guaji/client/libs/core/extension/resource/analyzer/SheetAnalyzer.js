@@ -1,20 +1,20 @@
 /**
-* Copyright (c) Egret-Labs.org. Permission is hereby granted, free of charge,
-* to any person obtaining a copy of this software and associated documentation
-* files (the "Software"), to deal in the Software without restriction, including
-* without limitation the rights to use, copy, modify, merge, publish, distribute,
-* sublicense, and/or sell copies of the Software, and to permit persons to whom
-* the Software is furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included
-* in all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-* INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-* PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-* FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-* ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ * Copyright (c) Egret-Labs.org. Permission is hereby granted, free of charge,
+ * to any person obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom
+ * the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+ * FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -24,8 +24,8 @@ var __extends = this.__extends || function (d, b) {
 var RES;
 (function (RES) {
     /**
-    * SpriteSheet解析器
-    */
+     * SpriteSheet解析器
+     */
     var SheetAnalyzer = (function (_super) {
         __extends(SheetAnalyzer, _super);
         function SheetAnalyzer() {
@@ -35,8 +35,8 @@ var RES;
             this._dataFormat = egret.URLLoaderDataFormat.TEXT;
         }
         /**
-        * @inheritDoc
-        */
+         * @inheritDoc
+         */
         SheetAnalyzer.prototype.getRes = function (name) {
             var res = this.fileDic[name];
             if (!res) {
@@ -52,10 +52,9 @@ var RES;
             }
             return res;
         };
-
         /**
-        * 一项加载结束
-        */
+         * 一项加载结束
+         */
         SheetAnalyzer.prototype.onLoadFinish = function (event) {
             var loader = (event.target);
             var data = this.resItemDic[loader.hashCode];
@@ -71,14 +70,14 @@ var RES;
                 this._dataFormat = egret.URLLoaderDataFormat.TEXTURE;
                 this.loadFile(resItem, compFunc, data.thisObject);
                 this._dataFormat = egret.URLLoaderDataFormat.TEXT;
-            } else {
+            }
+            else {
                 compFunc.call(data.thisObject, resItem);
             }
         };
-
         /**
-        * 解析并缓存加载成功的数据
-        */
+         * 解析并缓存加载成功的数据
+         */
         SheetAnalyzer.prototype.analyzeData = function (resItem, data) {
             var name = resItem.name;
             if (this.fileDic[name] || !data) {
@@ -86,10 +85,11 @@ var RES;
             }
             var config;
             if (typeof (data) == "string") {
-                try  {
+                try {
                     var str = data;
                     config = JSON.parse(str);
-                } catch (e) {
+                }
+                catch (e) {
                     egret.Logger.warning("JSON文件格式不正确: " + resItem.url);
                 }
                 if (!config) {
@@ -98,7 +98,8 @@ var RES;
                 this.sheetMap[name] = config;
                 resItem.loaded = false;
                 resItem.url = this.getRelativePath(resItem.url, config["file"]);
-            } else {
+            }
+            else {
                 var texture = data;
                 config = this.sheetMap[name];
                 delete this.sheetMap[name];
@@ -109,18 +110,17 @@ var RES;
                 }
             }
         };
-
         SheetAnalyzer.prototype.getRelativePath = function (url, file) {
             url = url.split("\\").join("/");
             var index = url.lastIndexOf("/");
             if (index != -1) {
                 url = url.substring(0, index + 1) + file;
-            } else {
+            }
+            else {
                 url = file;
             }
             return url;
         };
-
         SheetAnalyzer.prototype.parseSpriteSheet = function (texture, data, name) {
             var frames = data.frames;
             if (!frames) {

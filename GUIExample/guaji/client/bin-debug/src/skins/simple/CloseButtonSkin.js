@@ -6,12 +6,12 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var CloseButtonSkin = (function (_super) {
             __extends(CloseButtonSkin, _super);
             function CloseButtonSkin() {
                 _super.call(this);
-
                 this.elementsContent = [this.__4_i(), this.labelDisplay_i()];
                 this.states = [
                     new egret.gui.State("up", [
@@ -59,7 +59,6 @@ var skins;
             return CloseButtonSkin;
         })(egret.gui.Skin);
         simple.CloseButtonSkin = CloseButtonSkin;
-        CloseButtonSkin.prototype.__class__ = "skins.simple.CloseButtonSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        CloseButtonSkin.prototype.__class__ = "simple.CloseButtonSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

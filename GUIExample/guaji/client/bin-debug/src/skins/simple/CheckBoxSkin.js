@@ -6,15 +6,16 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var CheckBoxSkin = (function (_super) {
             __extends(CheckBoxSkin, _super);
             function CheckBoxSkin() {
                 _super.call(this);
-
                 this.elementsContent = [this.__10_i()];
                 this.states = [
-                    new egret.gui.State("up", []),
+                    new egret.gui.State("up", [
+                    ]),
                     new egret.gui.State("down", [
                         new egret.gui.SetProperty("__8", "source", "checkbox_select_over_png")
                     ]),
@@ -81,7 +82,6 @@ var skins;
             return CheckBoxSkin;
         })(egret.gui.Skin);
         simple.CheckBoxSkin = CheckBoxSkin;
-        CheckBoxSkin.prototype.__class__ = "skins.simple.CheckBoxSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        CheckBoxSkin.prototype.__class__ = "simple.CheckBoxSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

@@ -6,12 +6,12 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var ButtonSkin = (function (_super) {
             __extends(ButtonSkin, _super);
             function ButtonSkin() {
                 _super.call(this);
-
                 this.minHeight = 60;
                 this.minWidth = 140;
                 this.elementsContent = [this.__4_i(), this.labelDisplay_i()];
@@ -61,7 +61,6 @@ var skins;
             return ButtonSkin;
         })(egret.gui.Skin);
         simple.ButtonSkin = ButtonSkin;
-        ButtonSkin.prototype.__class__ = "skins.simple.ButtonSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        ButtonSkin.prototype.__class__ = "simple.ButtonSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

@@ -6,17 +6,20 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var HSliderThumbSkin = (function (_super) {
             __extends(HSliderThumbSkin, _super);
             function HSliderThumbSkin() {
                 _super.call(this);
-
                 this.elementsContent = [this.__4_i()];
                 this.states = [
-                    new egret.gui.State("up", []),
-                    new egret.gui.State("down", []),
-                    new egret.gui.State("disabled", [])
+                    new egret.gui.State("up", [
+                    ]),
+                    new egret.gui.State("down", [
+                    ]),
+                    new egret.gui.State("disabled", [
+                    ])
                 ];
             }
             HSliderThumbSkin.prototype.__4_i = function () {
@@ -30,7 +33,6 @@ var skins;
             return HSliderThumbSkin;
         })(egret.gui.Skin);
         simple.HSliderThumbSkin = HSliderThumbSkin;
-        HSliderThumbSkin.prototype.__class__ = "skins.simple.HSliderThumbSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        HSliderThumbSkin.prototype.__class__ = "simple.HSliderThumbSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

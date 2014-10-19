@@ -1,29 +1,29 @@
 /**
-* Copyright (c) 2014,Egret-Labs.org
-* All rights reserved.
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-*     * Redistributions of source code must retain the above copyright
-*       notice, this list of conditions and the following disclaimer.
-*     * Redistributions in binary form must reproduce the above copyright
-*       notice, this list of conditions and the following disclaimer in the
-*       documentation and/or other materials provided with the distribution.
-*     * Neither the name of the Egret-Labs.org nor the
-*       names of its contributors may be used to endorse or promote products
-*       derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
-* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * Copyright (c) 2014,Egret-Labs.org
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Egret-Labs.org nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -33,31 +33,37 @@ var __extends = this.__extends || function (d, b) {
 var egret;
 (function (egret) {
     /**
-    * @class egret.Bitmap
-    * @classdesc
-    * Bitmap 类表示用于表示位图图像的显示对象。
-    * @extends egret.DisplayObject
-    */
+     * @class egret.Bitmap
+     * @classdesc
+     * Bitmap 类表示用于表示位图图像的显示对象。
+     * @extends egret.DisplayObject
+     */
     var Bitmap = (function (_super) {
         __extends(Bitmap, _super);
         function Bitmap(texture) {
             _super.call(this);
             /**
-            * 单个Bitmap是否开启DEBUG模式
-            * @member {boolean} egret.Bitmap#debug
-            */
+             * 单个Bitmap是否开启DEBUG模式
+             * @member {boolean} egret.Bitmap#debug
+             */
             this.debug = false;
             /**
-            * debug边框颜色，默认值为红色
-            * @member {number} egret.Bitmap#debugColor
-            */
+             * debug边框颜色，默认值为红色
+             * @member {number} egret.Bitmap#debugColor
+             */
             this.debugColor = 0xff0000;
             /**
-            * 确定位图填充尺寸的方式。默认值：BitmapFillMode.SCALE。
-            * 设置为 BitmapFillMode.REPEAT时，位图将重复以填充区域。
-            * 设置为 BitmapFillMode.SCALE时，位图将拉伸以填充区域。
-            * @member {egret.Texture} egret.Bitmap#fillMode
-            */
+             * 矩形区域，它定义位图对象的九个缩放区域。此属性仅当fillMode为BitmapFillMode.SCALE时有效。
+             * scale9Grid的x、y、width、height分别代表九宫图中中间那块的左上点的x、y以及中间方块的宽高。
+             * @member {egret.Texture} egret.Bitmap#scale9Grid
+             */
+            this.scale9Grid = null;
+            /**
+             * 确定位图填充尺寸的方式。
+             * 设置为 BitmapFillMode.REPEAT时，位图将重复以填充区域；BitmapFillMode.SCALE时，位图将拉伸以填充区域。
+             * 默认值：BitmapFillMode.SCALE。
+             * @member {egret.Texture} egret.Bitmap#fillMode
+             */
             this.fillMode = "scale";
             if (texture) {
                 this._texture = texture;
@@ -66,9 +72,9 @@ var egret;
         }
         Object.defineProperty(Bitmap.prototype, "texture", {
             /**
-            * 渲染纹理
-            * @member {egret.Texture} egret.Bitmap#texture
-            */
+             * 渲染纹理
+             * @member {egret.Texture} egret.Bitmap#texture
+             */
             get: function () {
                 return this._texture;
             },
@@ -82,8 +88,6 @@ var egret;
             enumerable: true,
             configurable: true
         });
-
-
         Bitmap.prototype._render = function (renderContext) {
             var texture = this._texture;
             if (!texture) {
@@ -95,7 +99,6 @@ var egret;
             var destH = this._hasHeightSet ? this._explicitHeight : texture._textureHeight;
             Bitmap._drawBitmap(renderContext, destW, destH, this);
         };
-
         Bitmap._drawBitmap = function (renderContext, destW, destH, thisObject) {
             var texture = thisObject._texture_to_render;
             if (!texture) {
@@ -107,7 +110,8 @@ var egret;
                 var s9g = thisObject.scale9Grid || texture["scale9Grid"];
                 if (s9g && textureWidth - s9g.width < destW && textureHeight - s9g.height < destH) {
                     Bitmap.drawScale9GridImage(renderContext, thisObject, s9g, destW, destH);
-                } else {
+                }
+                else {
                     var offsetX = texture._offsetX;
                     var offsetY = texture._offsetY;
                     var bitmapWidth = texture._bitmapWidth || textureWidth;
@@ -120,14 +124,14 @@ var egret;
                     destH = Math.round(bitmapHeight * scaleY);
                     egret.RenderFilter.getInstance().drawImage(renderContext, thisObject, texture._bitmapX, texture._bitmapY, bitmapWidth, bitmapHeight, offsetX, offsetY, destW, destH);
                 }
-            } else {
+            }
+            else {
                 Bitmap.drawRepeatImage(renderContext, thisObject, destW, destH);
             }
         };
-
         /**
-        * 绘制平铺位图
-        */
+         * 绘制平铺位图
+         */
         Bitmap.drawRepeatImage = function (renderContext, data, destWidth, destHeight) {
             var texture = data._texture_to_render;
             if (!texture) {
@@ -141,7 +145,6 @@ var egret;
             var sourceHeight = texture._bitmapHeight || textureHeight;
             var destX = texture._offsetX;
             var destY = texture._offsetY;
-
             var renderFilter = egret.RenderFilter.getInstance();
             for (var x = destX; x < destWidth; x += textureWidth) {
                 for (var y = destY; y < destHeight; y += textureHeight) {
@@ -151,10 +154,9 @@ var egret;
                 }
             }
         };
-
         /**
-        * 绘制九宫格位图
-        */
+         * 绘制九宫格位图
+         */
         Bitmap.drawScale9GridImage = function (renderContext, data, scale9Grid, destWidth, destHeight) {
             var texture = data._texture_to_render;
             if (!texture || !scale9Grid) {
@@ -169,13 +171,11 @@ var egret;
             var sourceHeight = texture._bitmapHeight || textureHeight;
             var destX = texture._offsetX;
             var destY = texture._offsetY;
-
             var s9g = egret.Rectangle.identity.initialize(scale9Grid.x - Math.round(destX), scale9Grid.y - Math.round(destX), scale9Grid.width, scale9Grid.height);
             var roundedDrawX = Math.round(destX);
             var roundedDrawY = Math.round(destY);
             destWidth -= textureWidth - sourceWidth;
             destHeight -= textureHeight - sourceHeight;
-
             //防止空心的情况出现。
             if (s9g.y == s9g.bottom) {
                 if (s9g.bottom < sourceHeight)
@@ -189,19 +189,16 @@ var egret;
                 else
                     s9g.x--;
             }
-
             var sourceX2 = sourceX + s9g.x;
             var sourceX3 = sourceX + s9g.right;
             var sourceRightW = sourceWidth - s9g.right;
             var sourceY2 = sourceY + s9g.y;
             var sourceY3 = sourceY + s9g.bottom;
             var sourceBottomH = sourceHeight - s9g.bottom;
-
             var destX1 = roundedDrawX + s9g.x;
             var destY1 = roundedDrawY + s9g.y;
             var destScaleGridBottom = destHeight - (sourceHeight - s9g.bottom);
             var destScaleGridRight = destWidth - (sourceWidth - s9g.right);
-
             renderFilter.drawImage(renderContext, data, sourceX, sourceY, s9g.x, s9g.y, roundedDrawX, roundedDrawY, s9g.x, s9g.y);
             renderFilter.drawImage(renderContext, data, sourceX2, sourceY, s9g.width, s9g.y, destX1, roundedDrawY, destScaleGridRight - s9g.x, s9g.y);
             renderFilter.drawImage(renderContext, data, sourceX3, sourceY, sourceRightW, s9g.y, roundedDrawX + destScaleGridRight, roundedDrawY, destWidth - destScaleGridRight, s9g.y);
@@ -212,12 +209,11 @@ var egret;
             renderFilter.drawImage(renderContext, data, sourceX2, sourceY3, s9g.width, sourceBottomH, destX1, roundedDrawY + destScaleGridBottom, destScaleGridRight - s9g.x, destHeight - destScaleGridBottom);
             renderFilter.drawImage(renderContext, data, sourceX3, sourceY3, sourceRightW, sourceBottomH, roundedDrawX + destScaleGridRight, roundedDrawY + destScaleGridBottom, destWidth - destScaleGridRight, destHeight - destScaleGridBottom);
         };
-
         /**
-        * @see egret.DisplayObject.measureBounds
-        * @returns {egret.Rectangle}
-        * @private
-        */
+         * @see egret.DisplayObject.measureBounds
+         * @returns {egret.Rectangle}
+         * @private
+         */
         Bitmap.prototype._measureBounds = function () {
             var texture = this._texture;
             if (!texture) {
@@ -229,6 +225,10 @@ var egret;
             var h = texture._textureHeight;
             return egret.Rectangle.identity.initialize(x, y, w, h);
         };
+        /**
+         * 全部Bitmap是否开启DEBUG模式
+         * @member {boolean} egret.Bitmap.debug
+         */
         Bitmap.debug = false;
         return Bitmap;
     })(egret.DisplayObject);

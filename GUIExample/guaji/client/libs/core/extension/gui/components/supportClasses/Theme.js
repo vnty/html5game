@@ -1,37 +1,38 @@
 /**
-* Copyright (c) 2014,Egret-Labs.org
-* All rights reserved.
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-*     * Redistributions of source code must retain the above copyright
-*       notice, this list of conditions and the following disclaimer.
-*     * Redistributions in binary form must reproduce the above copyright
-*       notice, this list of conditions and the following disclaimer in the
-*       documentation and/or other materials provided with the distribution.
-*     * Neither the name of the Egret-Labs.org nor the
-*       names of its contributors may be used to endorse or promote products
-*       derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
-* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * Copyright (c) 2014,Egret-Labs.org
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Egret-Labs.org nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY EGRET-LABS.ORG AND CONTRIBUTORS "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL EGRET-LABS.ORG AND CONTRIBUTORS BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 var egret;
 (function (egret) {
+    var gui;
     (function (gui) {
         var Theme = (function () {
             /**
-            * 构造函数
-            * @method egret.gui.PopUpManager#constructor
-            */
+             * 构造函数
+             * @method egret.gui.PopUpManager#constructor
+             */
             function Theme(configURL) {
                 this.delyList = [];
                 this.loadConfig(configURL);
@@ -43,7 +44,6 @@ var egret;
                 this.initialized = true;
                 gui.SkinnableComponent._defaultTheme = new Theme(configURL);
             };
-
             Theme.prototype.loadConfig = function (configURL) {
                 var loader = new egret.URLLoader();
                 loader.addEventListener(egret.Event.COMPLETE, this.onLoadComplete, this);
@@ -51,25 +51,23 @@ var egret;
                 loader.dataFormat = egret.URLLoaderDataFormat.TEXT;
                 loader.load(new egret.URLRequest(configURL));
             };
-
             Theme.prototype.onLoadComplete = function (event) {
                 var loader = (event.target);
-                try  {
+                try {
                     var str = loader.data;
                     var data = JSON.parse(str);
                     this.skinMap = data.skins;
-                } catch (e) {
+                }
+                catch (e) {
                     egret.Logger.warning("JSON文件格式不正确: " + loader._request.url + "\ndata:" + loader.data);
                 }
                 this.handleDelyList();
             };
-
             Theme.prototype.onLoadError = function (event) {
                 var loader = (event.target);
                 egret.Logger.warning("主题配置文件加载失败: " + loader._request.url);
                 this.handleDelyList();
             };
-
             Theme.prototype.handleDelyList = function () {
                 if (!this.skinMap) {
                     this.skinMap = {};
@@ -87,7 +85,6 @@ var egret;
                     }
                 }
             };
-
             Theme.prototype.getDefaultSkin = function (client) {
                 var skinMap = this.skinMap;
                 if (!skinMap) {
@@ -111,7 +108,6 @@ var egret;
             return Theme;
         })();
         gui.Theme = Theme;
-        Theme.prototype.__class__ = "egret.gui.Theme";
-    })(egret.gui || (egret.gui = {}));
-    var gui = egret.gui;
+        Theme.prototype.__class__ = "gui.Theme";
+    })(gui = egret.gui || (egret.gui = {}));
 })(egret || (egret = {}));

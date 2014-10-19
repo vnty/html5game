@@ -6,15 +6,16 @@ var __extends = this.__extends || function (d, b) {
 };
 var skins;
 (function (skins) {
+    var simple;
     (function (simple) {
         var RadioButtonSkin = (function (_super) {
             __extends(RadioButtonSkin, _super);
             function RadioButtonSkin() {
                 _super.call(this);
-
                 this.elementsContent = [this.__10_i()];
                 this.states = [
-                    new egret.gui.State("up", []),
+                    new egret.gui.State("up", [
+                    ]),
                     new egret.gui.State("down", [
                         new egret.gui.SetProperty("__8", "source", "radiobutton_select_over_png")
                     ]),
@@ -81,7 +82,6 @@ var skins;
             return RadioButtonSkin;
         })(egret.gui.Skin);
         simple.RadioButtonSkin = RadioButtonSkin;
-        RadioButtonSkin.prototype.__class__ = "skins.simple.RadioButtonSkin";
-    })(skins.simple || (skins.simple = {}));
-    var simple = skins.simple;
+        RadioButtonSkin.prototype.__class__ = "simple.RadioButtonSkin";
+    })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));

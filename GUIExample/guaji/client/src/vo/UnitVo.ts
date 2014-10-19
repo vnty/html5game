@@ -4,17 +4,17 @@
 class UnitVo
 {
     //唯一ID
-    public uid:Number;
+    public uid:number;
     //攻击力
-    public attack:Number;
+    public attack:number;
     //当前血量
-    public hp:Number;
+    public hp:number;
     //最大血量
-    public hpMax:Number;
+    public hpMax:number;
     //等级
-    public level:Number;
+    public level:number;
     //名字
-    public name:String;
+    public name:string;
     //资源ID
-    public res:String;
+    public res:string;
 }
