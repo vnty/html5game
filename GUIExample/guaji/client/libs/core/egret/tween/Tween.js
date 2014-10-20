@@ -272,7 +272,7 @@ var egret;
                 var action = this._actions[i];
                 var pos = action.t;
                 if (pos == ePos || (pos > sPos && pos < ePos) || (includeStart && pos == startPos)) {
-                    action.f.apply(action.o, action.p);
+                    action.f(action.o, action.p);
                 }
             }
         };

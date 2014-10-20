@@ -43,7 +43,7 @@ class Battle extends egret.gui.Panel
             case this.attackBtn:
                 console.log("attackBtn");
 
-                var vo:UnitVo = this.unitDic[0];
+                var vo:UnitVo = this.unitDic[3];
                 vo.hp -= 100;
                 if(vo.hp < 0) vo.hp = 0;
                 this.upDataRoleHp();
@@ -80,13 +80,27 @@ class Battle extends egret.gui.Panel
 
     private upDataRoleHp():void
     {
-        var vo:UnitVo = this.unitDic[0];
+        var vo:UnitVo = this.unitDic[3];
         var roleUI:egret.gui.SkinnableComponent;
-        roleUI = this["role1"];
+        roleUI = this["role3"];
         var hpBar:egret.gui.UIAsset = roleUI["hp"];
         var hpText:egret.gui.Label = roleUI["hpText"];
         hpBar.scaleX = vo.hp / vo.hpMax;
         hpText.text = vo.hp + "/" + vo.hpMax;
+
+        var decHp:egret.gui.Label = roleUI["decHp"];
+        decHp.text = "-100";
+        decHp.visible = true;
+
+        this.tw = egret.Tween.get(decHp);
+        this.tw.to({y:-17}, 2000);
+        this.tw.call(this.decHpComplete, decHp);
+    }
+
+    private decHpComplete(target:any):void
+    {
+        target.y = 17;
+        target.visible = false;
     }
 
     private attackEffect():void
@@ -97,10 +111,25 @@ class Battle extends egret.gui.Panel
         var targetUI:egret.gui.SkinnableComponent;
         targetUI = this["role3"];
 
-       var tw = egret.Tween.get(roleUI);
-        tw.to({x:14 + 100}, 200)
-    }
+       var ags = {role:'1', tx:14};
+       this.tw = egret.Tween.get(roleUI);
+       this.tw.to({x:14 + 50}, 300);
+       this.tw.call(this.moveComplete, roleUI, ags);
 
+
+        var ags = {role:'3', tx:467};
+        this.tw = egret.Tween.get(targetUI);
+        this.tw.to({x:467 + 25}, 300);
+        this.tw.call(this.moveComplete, targetUI, ags);
+    }
+    private tw:any;
+    private moveComplete(target:any, ags:any):void
+    {
+        var id:string = "role" + ags.role;
+        var tx:number = ags.tx;
+        this.tw = egret.Tween.get(target);
+        this.tw.to({x:tx}, 150);
+    }
     //初始怪物
     private initMonster():void
     {
@@ -118,7 +147,7 @@ class Battle extends egret.gui.Panel
             vo.level = Number(this.monsterData[index][2]);
             vo.attack = Number(this.monsterData[index][3]);
             vo.hp = vo.hpMax = Number(this.monsterData[index][4]);
-
+            this.unitDic[3 + i] = vo;
             roleUI = this["role" + (i + 3)];
             this.setData(roleUI, vo);
         }

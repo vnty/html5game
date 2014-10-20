@@ -12,7 +12,7 @@ var ui;
             _super.call(this);
             this.height = 44;
             this.width = 138;
-            this.elementsContent = [this.pic_i(), this.__3_i(), this.hp_i(), this.data_i(), this.hpText_i()];
+            this.elementsContent = [this.pic_i(), this.__3_i(), this.hp_i(), this.data_i(), this.hpText_i(), this.decHp_i(), this.addHp_i()];
             this.states = [
                 new egret.gui.State("normal", [
                 ]),
@@ -27,6 +27,18 @@ var ui;
             enumerable: true,
             configurable: true
         });
+        BattleSkinRole.prototype.addHp_i = function () {
+            var t = new egret.gui.Label();
+            this.addHp = t;
+            t.bold = true;
+            t.fontFamily = "Arial";
+            t.text = "-345";
+            t.textColor = 65280;
+            t.visible = false;
+            t.x = 0;
+            t.y = 27;
+            return t;
+        };
         BattleSkinRole.prototype.data_i = function () {
             var t = new egret.gui.Label();
             this.data = t;
@@ -37,6 +49,18 @@ var ui;
             t.width = 85;
             t.x = 12;
             t.y = 1;
+            return t;
+        };
+        BattleSkinRole.prototype.decHp_i = function () {
+            var t = new egret.gui.Label();
+            this.decHp = t;
+            t.bold = true;
+            t.fontFamily = "Arial";
+            t.text = "-345";
+            t.textColor = 16711680;
+            t.visible = false;
+            t.x = 0;
+            t.y = 27;
             return t;
         };
         BattleSkinRole.prototype.hpText_i = function () {
@@ -83,7 +107,7 @@ var ui;
             t.y = 0;
             return t;
         };
-        BattleSkinRole._skinParts = ["pic", "hp", "data", "hpText"];
+        BattleSkinRole._skinParts = ["pic", "hp", "data", "hpText", "decHp", "addHp"];
         return BattleSkinRole;
     })(egret.gui.Skin);
     ui.BattleSkinRole = BattleSkinRole;

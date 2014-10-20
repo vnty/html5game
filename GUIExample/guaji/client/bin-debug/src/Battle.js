@@ -32,11 +32,12 @@ var Battle = (function (_super) {
         switch (evt.target) {
             case this.attackBtn:
                 console.log("attackBtn");
-                var vo = this.unitDic[0];
+                var vo = this.unitDic[3];
                 vo.hp -= 100;
                 if (vo.hp < 0)
                     vo.hp = 0;
                 this.upDataRoleHp();
+                this.attackEffect();
                 break;
         }
     };
@@ -62,13 +63,43 @@ var Battle = (function (_super) {
         this.unitDic[0] = vo;
     };
     Battle.prototype.upDataRoleHp = function () {
-        var vo = this.unitDic[0];
+        var vo = this.unitDic[3];
         var roleUI;
-        roleUI = this["role1"];
+        roleUI = this["role3"];
         var hpBar = roleUI["hp"];
         var hpText = roleUI["hpText"];
         hpBar.scaleX = vo.hp / vo.hpMax;
         hpText.text = vo.hp + "/" + vo.hpMax;
+        var decHp = roleUI["decHp"];
+        decHp.text = "-100";
+        decHp.visible = true;
+        this.tw = egret.Tween.get(decHp);
+        this.tw.to({ y: -17 }, 2000);
+        this.tw.call(this.decHpComplete, decHp);
+    };
+    Battle.prototype.decHpComplete = function (target) {
+        target.y = 17;
+        target.visible = false;
+    };
+    Battle.prototype.attackEffect = function () {
+        var roleUI;
+        roleUI = this["role1"];
+        var targetUI;
+        targetUI = this["role3"];
+        var ags = { role: '1', tx: 14 };
+        this.tw = egret.Tween.get(roleUI);
+        this.tw.to({ x: 14 + 50 }, 300);
+        this.tw.call(this.moveComplete, roleUI, ags);
+        var ags = { role: '3', tx: 467 };
+        this.tw = egret.Tween.get(targetUI);
+        this.tw.to({ x: 467 + 25 }, 300);
+        this.tw.call(this.moveComplete, targetUI, ags);
+    };
+    Battle.prototype.moveComplete = function (target, ags) {
+        var id = "role" + ags.role;
+        var tx = ags.tx;
+        this.tw = egret.Tween.get(target);
+        this.tw.to({ x: tx }, 150);
     };
     //初始怪物
     Battle.prototype.initMonster = function () {
@@ -86,6 +117,7 @@ var Battle = (function (_super) {
             vo.level = Number(this.monsterData[index][2]);
             vo.attack = Number(this.monsterData[index][3]);
             vo.hp = vo.hpMax = Number(this.monsterData[index][4]);
+            this.unitDic[3 + i] = vo;
             roleUI = this["role" + (i + 3)];
             this.setData(roleUI, vo);
         }
