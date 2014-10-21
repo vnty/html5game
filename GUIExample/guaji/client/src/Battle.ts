@@ -95,6 +95,7 @@ class Battle extends egret.gui.Panel
         this.tw = egret.Tween.get(decHp);
         this.tw.to({y:-17}, 2000);
         this.tw.call(this.decHpComplete, decHp);
+
     }
 
     private decHpComplete(target:any):void
@@ -121,7 +122,21 @@ class Battle extends egret.gui.Panel
         this.tw = egret.Tween.get(targetUI);
         this.tw.to({x:467 + 25}, 300);
         this.tw.call(this.moveComplete, targetUI, ags);
+
+        var ags = {role:'1', tx:14};
+        this.tw = egret.Tween.get(this['skill1']);
+        this['skill1'].x = 160;
+        this['skill1'].visible = true;
+        this['skill1'].text = '暴风雪';
+        this.tw.to({x:160 + 80}, 800);
+        this.tw.call(this.skillPlayComplete,  this['skill1']);
     }
+
+    private skillPlayComplete(target:any):void
+    {
+        target.visible = false;
+    }
+
     private tw:any;
     private moveComplete(target:any, ags:any):void
     {

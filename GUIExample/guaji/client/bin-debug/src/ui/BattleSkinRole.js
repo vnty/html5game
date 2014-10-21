@@ -36,7 +36,7 @@ var ui;
             t.textColor = 65280;
             t.visible = false;
             t.x = 0;
-            t.y = 27;
+            t.y = 17;
             return t;
         };
         BattleSkinRole.prototype.data_i = function () {
@@ -60,7 +60,7 @@ var ui;
             t.textColor = 16711680;
             t.visible = false;
             t.x = 0;
-            t.y = 27;
+            t.y = 17;
             return t;
         };
         BattleSkinRole.prototype.hpText_i = function () {

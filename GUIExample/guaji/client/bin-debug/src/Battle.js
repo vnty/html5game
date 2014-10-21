@@ -94,6 +94,16 @@ var Battle = (function (_super) {
         this.tw = egret.Tween.get(targetUI);
         this.tw.to({ x: 467 + 25 }, 300);
         this.tw.call(this.moveComplete, targetUI, ags);
+        var ags = { role: '1', tx: 14 };
+        this.tw = egret.Tween.get(this['skill1']);
+        this['skill1'].x = 160;
+        this['skill1'].visible = true;
+        this['skill1'].text = '暴风雪';
+        this.tw.to({ x: 160 + 80 }, 800);
+        this.tw.call(this.skillPlayComplete, this['skill1']);
+    };
+    Battle.prototype.skillPlayComplete = function (target) {
+        target.visible = false;
     };
     Battle.prototype.moveComplete = function (target, ags) {
         var id = "role" + ags.role;
