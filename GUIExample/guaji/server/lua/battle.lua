@@ -1,12 +1,14 @@
-function battle(my, target)
+﻿function battle(my, target)
 	--报告
-	local report;
+	local report = "";
 	--计次
-	local i;
+	local i = 0;
 	--对象类型
-	local targetType;
+	local targetType = 0;   
+
+	math.randomseed(os.time())  
 	
-	while (my.hp < 0) or (target < 0) do
+	while (my.hp > 0) and (target.hp > 0) do
 	
 		targetType = i % 2;
 		
@@ -17,9 +19,12 @@ function battle(my, target)
 		if targetType == 1 then
 			report = report .. "暗夜树精 对 若风 造成" .. getHurt(target, my) .. "伤害\n";
 			end;
+		report = report .. "若风HP: " .. my.hp .. "\n暗夜树精HP: " .. target.hp .. "\n"
+		report = report .. "-----------------------------\n"
+		i = i + 1;	
 	end;
 		
-	return hurt;
+	控制台.输出(report);
 end
 
 function getHurt(my, target)
@@ -32,7 +37,7 @@ function getHurt(my, target)
 	local CONSTANT_DEFMAX = 10000;
 	
 	--伤害 攻击减去对方防御
-	hurt = my.attack - target.def;
+	hurt = math.random(my.attack, my.attackMax) - target.def;
 	--基础攻击伤害 攻击1/4
 	baseHurt = my.attack * 0.25;
 	--技能伤害 直接比例
