@@ -14,29 +14,30 @@ function battle(my, targetList)
 		
 		targetType = i % 4;
 		
-		if targetType == 0 then
-			target = getRandomTarget(targetList);
-			if (target ~= nil) then
-				report = report .. "若风 对 " .. target.name .. " 造成" .. getHurt(my, target)  .. "伤害\n";
+		if targetType == 0 then		
+			if (my.hp > 0) and (checkDizzy(my) == false) then			
+				report = report .. useSkill(my, targetList);
 			end;
-			report = "使用技能 " .. useSkill(my, targetList) .. "\n";
-		end;
+			report = report .. checkStatus(my);
+		end
 		
 		if targetType > 0 then
-			target = targetList[targetType - 1];
-			if (target.hp > 0) then
-				report = report .. target.name .. " 对 若风 造成" .. getHurt(target, my) .. "伤害\n";
-			end;
-			
+			target = targetList[targetType];
+			if (target.hp > 0) and (checkDizzy(target) == false) then
+				report = report .. target.name .. " 对 若风 造成" .. getHurt(target, my, 100) .. "伤害" .. "\n";
+			end;		
+			report = report .. checkStatus(target);
 		end;
 		
 		report = report .. "-----------------------------\n";
 		report = report .. showHp(my, targetList);
-		report = report .. "-----------------------------\n";
+		report = report .. "-----------------------------\n\n\n\n";
 		i = i + 1;	
 	end;
+	
+	
 		
-	--控制台.输出(report);
+	控制台.输出("\n\n\n" .. report);
 	--控制台.输出(toTable(config).name);
 	--控制台.输出(table2json(toTable(config)));
 end;
@@ -47,29 +48,50 @@ function showHp(my, targetList)
 	report = report .. " --> 若风 HP: " .. my.hp .. "\n" 
 	
 	report = report .." --> ";
-	for i = 0, 2 do
+	for i = 1, 3 do
 		report = report .. targetList[i].name .. " HP: " .. targetList[i].hp .. "   "
 	end;
 	
 	return report .. "\n";
 end;
 
---获取随机没死的目标
-function getRandomTarget(targetList)
+--获取随机没死的目标 数量
+function getRandomTarget(targetList, num)
 	local relust = false;
 	local target;
-	local index;
+	local selectList = {};
+	local i;
 	
+	for i = 1, toolsTableLen(targetList) do
+		if(targetList[i].hp > 0) then
+			table.insert(selectList, targetList[i]);
+		end;
+	end;
+	
+	--刚刚数量相等，或少于，都直接返回
+	if(toolsTableLen(selectList) <= num) then
+		return selectList;
+	end;
+	
+	local selectNum = 0;
+	local tureSelectList = {};
+
 	while(relust == false) do
-		index = math.random(0,2);
-		target = targetList[index];
-		if(target.hp > 0) then
+		i = math.random(1, toolsTableLen(selectList));
+		table.insert(tureSelectList, selectList[i]);
+		table.remove(selectList, i);
+		selectNum = selectNum + 1;
+		if(selectNum == num) then			
 			relust = true;
 		end;
 	end;
 	
-	return target;
+	return tureSelectList;
 end
+
+function trace(msg)
+	控制台.输出(msg .. "\n");
+end;
 
 --判断是否其中一个阵营失败
 function checkDie(my, targetList)
@@ -84,7 +106,7 @@ function checkDie(my, targetList)
 	--假设全死了
 	local dieAll = true;
 	
-	for i = 0, 2 do
+	for i = 1, 3 do
 		if(targetList[i].hp > 0) then
 			dieAll = false;
 		end;
@@ -98,26 +120,95 @@ function checkDie(my, targetList)
 	return false;
 end
 
+--使用技能
 function useSkill(my, targetList)
 	local index = math.random(1, 3);
-	local skillComVo = toolsToTable(控制台.读取配置(3, index, ""));
+	local skillComVo = toolsToTable(控制台.读取配置(3, index, ""))
 	local skillList = toolsStringSplit(skillComVo.com, "_");
 	local skillConfig;
 	local i;
-	local skillName;
+	local i;
+	local skillName = skillComVo.name;
+	local str;
+	local msg = "";
+	
 	for i = 1,toolsTableLen(skillList) do
-		skillConfig = toolsToTable(控制台.读取配置(2, skillList[i], ""));
-		skillName = skillConfig.name;
+		local skillId = tonumber(skillList[i]);
+		local skillPro = math.random(1, 100);
+		local useTargets = {};
+		skillConfig = toolsToTable(控制台.读取配置(2, skillId, ""));
+		
+		trace("看看" .. skillConfig.name);
+		--概率触发
+		skillPro = 1;
+		if(skillPro <= tonumber(skillConfig.pro)) then
+			
+			if(tonumber(skillConfig.mNum) > 0) then
+				table.insert(useTargets, my);
+			end;
+			
+			if(tonumber(skillConfig.tNum) > 0) then
+				local list = getRandomTarget(targetList, tonumber(skillConfig.tNum));
+				for k, v in pairs(list) do
+					table.insert(useTargets, v);
+				end
+			end;
+			
+			if(tonumber(skillConfig.hurtP) > 0) then
+				for k, v in pairs(useTargets) do
+					str = "造成伤害 " .. getHurt(my, v, tonumber(skillConfig.hurtP));
+					msg =  skillMsg(msg, skillName, my, v, str);
+				end;
+			end;
+			
+			if(tonumber(skillConfig.dizzy) > 0) then
+				for k, v in pairs(useTargets) do
+					str = "造成眩晕 " .. getDizzy(my, v, tonumber(skillConfig.dizzy));
+					msg =  skillMsg(msg, skillName, my, v, str);
+				end;
+			end;
+			
+		end;
 	end;
 	
-	return skillName;
+	return msg;
 end
 
-function getHurt(my, target)
+--叠加基础文本
+function skillMsg(msg, skillName, my, target, str)
+	return msg .. "-->" .. my.name .. " 使用技能 " .. skillName .. " 对 " .. target.name .. " " ..str .. "\n";
+end
 
+--减除状态
+function checkStatus(target)
+	local msg = "";
+	if(target.status ~= nil) then
+		
+		if (target.status.dizzy ~= nil) and (tonumber(target.status.dizzy) > 0) then
+			target.status.dizzy = target.status.dizzy - 1;
+			msg = "**> " .. target.name .. " 眩晕\n"
+		end; 
+		
+	end;
+	
+	return msg;
+end;
+
+--判断是否眩晕
+function checkDizzy(target)
+	if (target.status.dizzy ~= nil) and (target.status ~= nil) then
+		if(tonumber(target.status.dizzy) > 0) then
+			return true;
+		end;
+	end;
+	return false;
+end;
+
+--获取伤害
+function getHurt(my, target, pro)
+	
 	local hurt;
 	local baseHurt;
-	local skillHurt;
 	-------------------常量
 	-- 防御最高值
 	local CONSTANT_DEFMAX = 10000;
@@ -126,17 +217,15 @@ function getHurt(my, target)
 	hurt = math.random(my.attack, my.attackMax) - target.def;
 	--基础攻击伤害 攻击1/4
 	baseHurt = my.attack * 0.25;
-	--技能伤害 直接比例
-	skillHurt = 2;
 		
 	--伤害大于基础伤害 伤害为：（己方攻击-对方防御）*技能伤害
 	if hurt >= baseHurt then
-		hurt = hurt * skillHurt;
+		hurt = hurt;
 	end
 		
 	--伤害少于基础伤害 攻击*25%*(1-敌方防御/10000)*技能伤害
 	if  hurt < baseHurt then
-		hurt = baseHurt * (1 - target.def / CONSTANT_DEFMAX) * skillHurt;
+		hurt = baseHurt * (1 - target.def / CONSTANT_DEFMAX);
 	end	
 	
 	target.hp = target.hp - hurt;
@@ -147,9 +236,17 @@ function getHurt(my, target)
 	return hurt;
 end
 
+--眩晕
+function getDizzy(my, target, dizzy)
+	target.status.dizzy = dizzy;
+	trace('眩晕了' .. dizzy);
+	return dizzy .. " 回合";
+end;
+
 function init()
 
     local my = {};
+	my.name = "若风";
 	--攻击
 	my.attack = 10;
 	my.attackMax = 100;
@@ -173,12 +270,14 @@ function init()
 	my.ten = 10;
 	--命中
 	my.hit = 10;
+	--状态
+	my.status = {};
 	
 	local targetList = {};
 	local target = {};
 	local i = 0;
 
-	for i = 0,2 do
+	for i = 1,3 do
 		target = {};
 		
 		target.name = "暗夜树精" .. i;
@@ -205,6 +304,8 @@ function init()
 		target.ten = 10;
 		--命中
 		target.hit = 10;
+		--状态
+		target.status = {};
 		
 		targetList[i] = target;
 	end;
