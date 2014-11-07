@@ -1,4 +1,8 @@
-﻿
+﻿package.path = "../lua/?.lua;lua/?.lua;" .. package.path
+package.cpath =  "../clibs/?.dll;clibs/?.dll;" .. package.cpath
+
+local redis = require 'redis';
+local client = redis.connect('127.0.0.1', 6379);
 
 function battle(my, targetList)
 	--报告
@@ -36,8 +40,9 @@ function battle(my, targetList)
 	end;
 	
 	
-		
-	控制台.输出("\n\n\n" .. report);
+	local data = {};
+	local name = client:get("name");
+	控制台.输出("\n\n\n" .. report + "\n\n" + name);
 	--控制台.输出(toTable(config).name);
 	--控制台.输出(table2json(toTable(config)));
 end;

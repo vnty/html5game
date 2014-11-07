@@ -2,6 +2,7 @@
 package.cpath =  "../clibs/?.dll;clibs/?.dll;" .. package.cpath
 
 local redis = require 'redis';
+local roundObj;
 --local client = redis.connect('127.0.0.1', 6379);
 
 function battle(my, targetList)
@@ -13,12 +14,20 @@ function battle(my, targetList)
 	local targetType = 0;   
 	local target;
 	math.randomseed(os.time())  
+	local round = 0;
+	local batttleObj = {};
 	
 	while (checkDie(my, targetList) == false) do
 		
 		targetType = i % 4;
 		
-		if targetType == 0 then		
+		if targetType == 0 then	
+			round = round + 1;
+			if(round > 1) then
+				batttleObj[round - 1] = roundObj; 
+			end;
+			roundObj = {};
+
 			if (my.hp > 0) and (checkDizzy(my) == false) then			
 				report = report .. useSkill(my, targetList);
 			end;
@@ -37,6 +46,7 @@ function battle(my, targetList)
 		report = report .. showHp(my, targetList);
 		report = report .. "-----------------------------\n\n\n\n";
 		i = i + 1;	
+		
 	end;
 	
 	
@@ -142,8 +152,7 @@ function useSkill(my, targetList)
 		local skillPro = math.random(1, 100);
 		local useTargets = {};
 		skillConfig = toolsToTable(控制台.读取配置(2, skillId, ""));
-		
-		trace("看看" .. skillConfig.name);
+	
 		--概率触发
 		skillPro = 1;
 		if(skillPro <= tonumber(skillConfig.pro)) then
@@ -161,8 +170,9 @@ function useSkill(my, targetList)
 			
 			if(tonumber(skillConfig.hurtP) > 0) then
 				for k, v in pairs(useTargets) do
-					str = "造成伤害 " .. getHurt(my, v, tonumber(skillConfig.hurtP));
-					msg =  skillMsg(msg, skillName, my, v, str);
+					str = getHurt(my, v, tonumber(skillConfig.hurtP));
+					msg =  skillMsg(msg, skillName, my, v, "造成伤害 " .. str);
+					roundObj = my.name .. "使用" .. skillName .. " 对" .. v.name .. "造成" .. str .. "点伤害";
 				end;
 			end;
 			
@@ -203,6 +213,7 @@ end;
 function checkDizzy(target)
 	if (target.status.dizzy ~= nil) and (target.status ~= nil) then
 		if(tonumber(target.status.dizzy) > 0) then
+			roundObj.text = target.name 。。 ' 处于冻结状态';
 			return true;
 		end;
 	end;
