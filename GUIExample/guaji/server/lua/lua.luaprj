@@ -1,7 +1,445 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <Project Name="lua.luaprj" >
-    <LuaFile RelativePath=".\..lua\battle.lua" />
-    <LuaFile RelativePath=".\..lua\src\redis.lua" />
-    <LuaFile RelativePath=".\..lua\src\system.lua" />
+    <Filter Name="lua" >
+        <LuaFile RelativePath=".\battle - 副本.lua" />
+        <LuaFile RelativePath=".\battle.lua" />
+        <Filter Name="clibs" >
+            <Filter Name="alien" />
+            <Filter Name="luasql" />
+            <Filter Name="md5" />
+            <Filter Name="mime" />
+            <Filter Name="oil" />
+            <Filter Name="socket" />
+        </Filter>
+        <Filter Name="JSON4Lua-0.9.40" >
+            <Filter Name="doc" >
+                <Filter Name="pics" />
+            </Filter>
+            <Filter Name="examples" >
+                <LuaFile RelativePath=".\JSON4Lua-0.9.40\examples\example.lua" />
+                <LuaFile RelativePath=".\JSON4Lua-0.9.40\examples\jsonrpc.lua" />
+                <LuaFile RelativePath=".\JSON4Lua-0.9.40\examples\tests.lua" />
+                <LuaFile RelativePath=".\JSON4Lua-0.9.40\examples\timetrials.lua" />
+            </Filter>
+            <Filter Name="json" >
+                <LuaFile RelativePath=".\JSON4Lua-0.9.40\json\json4.lua" />
+                <LuaFile RelativePath=".\JSON4Lua-0.9.40\json\rpc.lua" />
+                <LuaFile RelativePath=".\JSON4Lua-0.9.40\json\rpcserver.lua" />
+            </Filter>
+        </Filter>
+        <Filter Name="lua" >
+            <LuaFile RelativePath=".\lua\alien.lua" />
+            <LuaFile RelativePath=".\lua\base.lua" />
+            <LuaFile RelativePath=".\lua\bin.lua" />
+            <LuaFile RelativePath=".\lua\classlib.lua" />
+            <LuaFile RelativePath=".\lua\CLRForm.lua" />
+            <LuaFile RelativePath=".\lua\CLRPackage.lua" />
+            <LuaFile RelativePath=".\lua\copas.lua" />
+            <LuaFile RelativePath=".\lua\coxpcall.lua" />
+            <LuaFile RelativePath=".\lua\date.lua" />
+            <LuaFile RelativePath=".\lua\debug_ext.lua" />
+            <LuaFile RelativePath=".\lua\debug_init.lua" />
+            <LuaFile RelativePath=".\lua\fstable.lua" />
+            <LuaFile RelativePath=".\lua\getopt.lua" />
+            <LuaFile RelativePath=".\lua\idl2lua.lua" />
+            <LuaFile RelativePath=".\lua\ilua.lua" />
+            <LuaFile RelativePath=".\lua\io_ext.lua" />
+            <LuaFile RelativePath=".\lua\json.lua" />
+            <LuaFile RelativePath=".\lua\json4.lua" />
+            <LuaFile RelativePath=".\lua\lanes.lua" />
+            <LuaFile RelativePath=".\lua\lar.lua" />
+            <LuaFile RelativePath=".\lua\lcs.lua" />
+            <LuaFile RelativePath=".\lua\lemock.lua" />
+            <LuaFile RelativePath=".\lua\list.lua" />
+            <LuaFile RelativePath=".\lua\logging.lua" />
+            <LuaFile RelativePath=".\lua\ltn12.lua" />
+            <LuaFile RelativePath=".\lua\luadoc_start.lua" />
+            <LuaFile RelativePath=".\lua\luaidl.lua" />
+            <LuaFile RelativePath=".\lua\luaunit.lua" />
+            <LuaFile RelativePath=".\lua\LuaXml.lua" />
+            <LuaFile RelativePath=".\lua\markdown.lua" />
+            <LuaFile RelativePath=".\lua\math_ext.lua" />
+            <LuaFile RelativePath=".\lua\mbox.lua" />
+            <LuaFile RelativePath=".\lua\md5.lua" />
+            <LuaFile RelativePath=".\lua\mime.lua" />
+            <LuaFile RelativePath=".\lua\modules.lua" />
+            <LuaFile RelativePath=".\lua\object.lua" />
+            <LuaFile RelativePath=".\lua\oil.lua" />
+            <LuaFile RelativePath=".\lua\package_ext.lua" />
+            <LuaFile RelativePath=".\lua\parser.lua" />
+            <LuaFile RelativePath=".\lua\posix_ext.lua" />
+            <LuaFile RelativePath=".\lua\precompiler.lua" />
+            <LuaFile RelativePath=".\lua\preloader.lua" />
+            <LuaFile RelativePath=".\lua\re.lua" />
+            <LuaFile RelativePath=".\lua\redis.lua" />
+            <LuaFile RelativePath=".\lua\rex.lua" />
+            <LuaFile RelativePath=".\lua\serialize.lua" />
+            <LuaFile RelativePath=".\lua\set.lua" />
+            <LuaFile RelativePath=".\lua\socket.lua" />
+            <LuaFile RelativePath=".\lua\stable.lua" />
+            <LuaFile RelativePath=".\lua\std.lua" />
+            <LuaFile RelativePath=".\lua\strbuf.lua" />
+            <LuaFile RelativePath=".\lua\strict.lua" />
+            <LuaFile RelativePath=".\lua\string_ext.lua" />
+            <LuaFile RelativePath=".\lua\table_ext.lua" />
+            <LuaFile RelativePath=".\lua\tar.lua" />
+            <LuaFile RelativePath=".\lua\tree.lua" />
+            <LuaFile RelativePath=".\lua\unclasslib.lua" />
+            <LuaFile RelativePath=".\lua\xml.lua" />
+            <Filter Name="data" />
+            <Filter Name="json" >
+                <LuaFile RelativePath=".\lua\json\decode.lua" />
+                <LuaFile RelativePath=".\lua\json\encode.lua" />
+                <LuaFile RelativePath=".\lua\json\util.lua" />
+                <Filter Name="decode" >
+                    <LuaFile RelativePath=".\lua\json\decode\array.lua" />
+                    <LuaFile RelativePath=".\lua\json\decode\calls.lua" />
+                    <LuaFile RelativePath=".\lua\json\decode\number.lua" />
+                    <LuaFile RelativePath=".\lua\json\decode\object.lua" />
+                    <LuaFile RelativePath=".\lua\json\decode\others.lua" />
+                    <LuaFile RelativePath=".\lua\json\decode\strings.lua" />
+                    <LuaFile RelativePath=".\lua\json\decode\util.lua" />
+                </Filter>
+                <Filter Name="encode" >
+                    <LuaFile RelativePath=".\lua\json\encode\array.lua" />
+                    <LuaFile RelativePath=".\lua\json\encode\calls.lua" />
+                    <LuaFile RelativePath=".\lua\json\encode\number.lua" />
+                    <LuaFile RelativePath=".\lua\json\encode\object.lua" />
+                    <LuaFile RelativePath=".\lua\json\encode\others.lua" />
+                    <LuaFile RelativePath=".\lua\json\encode\output.lua" />
+                    <LuaFile RelativePath=".\lua\json\encode\output_utility.lua" />
+                    <LuaFile RelativePath=".\lua\json\encode\strings.lua" />
+                </Filter>
+            </Filter>
+            <Filter Name="logging" >
+                <LuaFile RelativePath=".\lua\logging\console.lua" />
+                <LuaFile RelativePath=".\lua\logging\email.lua" />
+                <LuaFile RelativePath=".\lua\logging\file.lua" />
+                <LuaFile RelativePath=".\lua\logging\rolling_file.lua" />
+                <LuaFile RelativePath=".\lua\logging\socket.lua" />
+                <LuaFile RelativePath=".\lua\logging\sql.lua" />
+            </Filter>
+            <Filter Name="loop" >
+                <LuaFile RelativePath=".\lua\loop\base.lua" />
+                <LuaFile RelativePath=".\lua\loop\cached.lua" />
+                <LuaFile RelativePath=".\lua\loop\multiple.lua" />
+                <LuaFile RelativePath=".\lua\loop\scoped.lua" />
+                <LuaFile RelativePath=".\lua\loop\simple.lua" />
+                <LuaFile RelativePath=".\lua\loop\table.lua" />
+                <Filter Name="collection" >
+                    <LuaFile RelativePath=".\lua\loop\collection\MapWithArrayOfKeys.lua" />
+                    <LuaFile RelativePath=".\lua\loop\collection\ObjectCache.lua" />
+                    <LuaFile RelativePath=".\lua\loop\collection\OrderedSet.lua" />
+                    <LuaFile RelativePath=".\lua\loop\collection\PriorityQueue.lua" />
+                    <LuaFile RelativePath=".\lua\loop\collection\UnorderedArray.lua" />
+                    <LuaFile RelativePath=".\lua\loop\collection\UnorderedArraySet.lua" />
+                </Filter>
+                <Filter Name="compiler" >
+                    <LuaFile RelativePath=".\lua\loop\compiler\Arguments.lua" />
+                    <LuaFile RelativePath=".\lua\loop\compiler\Conditional.lua" />
+                    <LuaFile RelativePath=".\lua\loop\compiler\Expression.lua" />
+                </Filter>
+                <Filter Name="component" >
+                    <LuaFile RelativePath=".\lua\loop\component\base.lua" />
+                    <LuaFile RelativePath=".\lua\loop\component\contained.lua" />
+                    <LuaFile RelativePath=".\lua\loop\component\dynamic.lua" />
+                    <LuaFile RelativePath=".\lua\loop\component\intercepted.lua" />
+                    <LuaFile RelativePath=".\lua\loop\component\wrapped.lua" />
+                </Filter>
+                <Filter Name="debug" >
+                    <LuaFile RelativePath=".\lua\loop\debug\Inspector.lua" />
+                    <LuaFile RelativePath=".\lua\loop\debug\Matcher.lua" />
+                    <LuaFile RelativePath=".\lua\loop\debug\Verbose.lua" />
+                    <LuaFile RelativePath=".\lua\loop\debug\Viewer.lua" />
+                </Filter>
+                <Filter Name="object" >
+                    <LuaFile RelativePath=".\lua\loop\object\Exception.lua" />
+                    <LuaFile RelativePath=".\lua\loop\object\Publisher.lua" />
+                    <LuaFile RelativePath=".\lua\loop\object\Wrapper.lua" />
+                </Filter>
+                <Filter Name="serial" >
+                    <LuaFile RelativePath=".\lua\loop\serial\FileStream.lua" />
+                    <LuaFile RelativePath=".\lua\loop\serial\Serializer.lua" />
+                    <LuaFile RelativePath=".\lua\loop\serial\SocketStream.lua" />
+                    <LuaFile RelativePath=".\lua\loop\serial\StringStream.lua" />
+                </Filter>
+                <Filter Name="thread" >
+                    <LuaFile RelativePath=".\lua\loop\thread\CoSocket.lua" />
+                    <LuaFile RelativePath=".\lua\loop\thread\IOScheduler.lua" />
+                    <LuaFile RelativePath=".\lua\loop\thread\Scheduler.lua" />
+                    <LuaFile RelativePath=".\lua\loop\thread\SocketScheduler.lua" />
+                    <LuaFile RelativePath=".\lua\loop\thread\Timer.lua" />
+                </Filter>
+            </Filter>
+            <Filter Name="luadoc" >
+                <LuaFile RelativePath=".\lua\luadoc\config.lua" />
+                <LuaFile RelativePath=".\lua\luadoc\init.lua" />
+                <LuaFile RelativePath=".\lua\luadoc\lp.lua" />
+                <LuaFile RelativePath=".\lua\luadoc\util.lua" />
+                <Filter Name="doclet" >
+                    <LuaFile RelativePath=".\lua\luadoc\doclet\debug.lua" />
+                    <LuaFile RelativePath=".\lua\luadoc\doclet\formatter.lua" />
+                    <LuaFile RelativePath=".\lua\luadoc\doclet\html.lua" />
+                    <LuaFile RelativePath=".\lua\luadoc\doclet\raw.lua" />
+                    <Filter Name="html" />
+                </Filter>
+                <Filter Name="taglet" >
+                    <LuaFile RelativePath=".\lua\luadoc\taglet\standard.lua" />
+                    <Filter Name="standard" >
+                        <LuaFile RelativePath=".\lua\luadoc\taglet\standard\tags.lua" />
+                    </Filter>
+                </Filter>
+            </Filter>
+            <Filter Name="luaidl" >
+                <LuaFile RelativePath=".\lua\luaidl\lex.lua" />
+                <LuaFile RelativePath=".\lua\luaidl\pre.lua" />
+                <LuaFile RelativePath=".\lua\luaidl\sin.lua" />
+            </Filter>
+            <Filter Name="luarocks" >
+                <LuaFile RelativePath=".\lua\luarocks\add.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\build.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\cache.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\cfg.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\command_line.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\config.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\deps.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\dir.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\download.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\fetch.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\fs.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\help.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\index.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\install.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\list.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\loader.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\make.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\make_manifest.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\manif.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\manif_core.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\pack.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\path.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\persist.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\refresh_cache.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\remove.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\rep.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\require.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\search.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\type_check.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\unpack.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\util.lua" />
+                <LuaFile RelativePath=".\lua\luarocks\validate.lua" />
+                <Filter Name="build" >
+                    <LuaFile RelativePath=".\lua\luarocks\build\builtin.lua" />
+                    <LuaFile RelativePath=".\lua\luarocks\build\cmake.lua" />
+                    <LuaFile RelativePath=".\lua\luarocks\build\command.lua" />
+                    <LuaFile RelativePath=".\lua\luarocks\build\make.lua" />
+                </Filter>
+                <Filter Name="fetch" >
+                    <LuaFile RelativePath=".\lua\luarocks\fetch\cvs.lua" />
+                    <LuaFile RelativePath=".\lua\luarocks\fetch\git.lua" />
+                    <LuaFile RelativePath=".\lua\luarocks\fetch\sscm.lua" />
+                </Filter>
+                <Filter Name="fs" >
+                    <LuaFile RelativePath=".\lua\luarocks\fs\lua.lua" />
+                    <LuaFile RelativePath=".\lua\luarocks\fs\unix.lua" />
+                    <LuaFile RelativePath=".\lua\luarocks\fs\win32.lua" />
+                    <Filter Name="unix" >
+                        <LuaFile RelativePath=".\lua\luarocks\fs\unix\tools.lua" />
+                    </Filter>
+                    <Filter Name="win32" >
+                        <LuaFile RelativePath=".\lua\luarocks\fs\win32\tools.lua" />
+                    </Filter>
+                </Filter>
+                <Filter Name="tools" >
+                    <LuaFile RelativePath=".\lua\luarocks\tools\patch.lua" />
+                    <LuaFile RelativePath=".\lua\luarocks\tools\tar.lua" />
+                    <LuaFile RelativePath=".\lua\luarocks\tools\zip.lua" />
+                </Filter>
+            </Filter>
+            <Filter Name="lxp" >
+                <LuaFile RelativePath=".\lua\lxp\lom.lua" />
+            </Filter>
+            <Filter Name="metalua" >
+                <LuaFile RelativePath=".\lua\metalua\base.lua" />
+                <LuaFile RelativePath=".\lua\metalua\compiler.lua" />
+                <LuaFile RelativePath=".\lua\metalua\mlc_xcall.lua" />
+                <LuaFile RelativePath=".\lua\metalua\package2.lua" />
+                <LuaFile RelativePath=".\lua\metalua\runtime.lua" />
+                <LuaFile RelativePath=".\lua\metalua\string2.lua" />
+                <LuaFile RelativePath=".\lua\metalua\table2.lua" />
+                <Filter Name="extension" >
+                    <LuaFile RelativePath=".\lua\metalua\extension\xglobal-runtime.lua" />
+                </Filter>
+                <Filter Name="walk" >
+                    <LuaFile RelativePath=".\lua\metalua\walk\scope.lua" />
+                </Filter>
+            </Filter>
+            <Filter Name="oil" >
+                <LuaFile RelativePath=".\lua\oil\arch.lua" />
+                <LuaFile RelativePath=".\lua\oil\assert.lua" />
+                <LuaFile RelativePath=".\lua\oil\builder.lua" />
+                <LuaFile RelativePath=".\lua\oil\compat.lua" />
+                <LuaFile RelativePath=".\lua\oil\component.lua" />
+                <LuaFile RelativePath=".\lua\oil\Exception.lua" />
+                <LuaFile RelativePath=".\lua\oil\oo.lua" />
+                <LuaFile RelativePath=".\lua\oil\port.lua" />
+                <LuaFile RelativePath=".\lua\oil\properties.lua" />
+                <LuaFile RelativePath=".\lua\oil\verbose.lua" />
+                <Filter Name="arch" >
+                    <LuaFile RelativePath=".\lua\oil\arch\base.lua" />
+                    <LuaFile RelativePath=".\lua\oil\arch\cooperative.lua" />
+                    <LuaFile RelativePath=".\lua\oil\arch\corba.lua" />
+                    <LuaFile RelativePath=".\lua\oil\arch\ludo.lua" />
+                    <LuaFile RelativePath=".\lua\oil\arch\typed.lua" />
+                </Filter>
+                <Filter Name="builder" >
+                    <LuaFile RelativePath=".\lua\oil\builder\base.lua" />
+                    <LuaFile RelativePath=".\lua\oil\builder\cooperative.lua" />
+                    <LuaFile RelativePath=".\lua\oil\builder\corba.lua" />
+                    <LuaFile RelativePath=".\lua\oil\builder\gencode.lua" />
+                    <LuaFile RelativePath=".\lua\oil\builder\intercepted.lua" />
+                    <LuaFile RelativePath=".\lua\oil\builder\ludo.lua" />
+                    <LuaFile RelativePath=".\lua\oil\builder\typed.lua" />
+                </Filter>
+                <Filter Name="corba" >
+                    <LuaFile RelativePath=".\lua\oil\corba\giop.lua" />
+                    <LuaFile RelativePath=".\lua\oil\corba\idl.lua" />
+                    <Filter Name="giop" >
+                        <LuaFile RelativePath=".\lua\oil\corba\giop\Codec.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\giop\CodecGen.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\giop\Exception.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\giop\Indexer.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\giop\Listener.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\giop\Messenger.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\giop\ProxyOps.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\giop\Referrer.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\giop\Requester.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\giop\ServantOps.lua" />
+                    </Filter>
+                    <Filter Name="idl" >
+                        <LuaFile RelativePath=".\lua\oil\corba\idl\Compiler.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\idl\Importer.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\idl\Indexer.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\idl\ir.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\idl\Registry.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\idl\sysex.lua" />
+                    </Filter>
+                    <Filter Name="iiop" >
+                        <LuaFile RelativePath=".\lua\oil\corba\iiop\Profiler.lua" />
+                    </Filter>
+                    <Filter Name="interceptors" >
+                        <LuaFile RelativePath=".\lua\oil\corba\interceptors\ClientSide.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\interceptors\ServerSide.lua" />
+                    </Filter>
+                    <Filter Name="services" >
+                        <LuaFile RelativePath=".\lua\oil\corba\services\event.lua" />
+                        <LuaFile RelativePath=".\lua\oil\corba\services\naming.lua" />
+                        <Filter Name="event" >
+                            <LuaFile RelativePath=".\lua\oil\corba\services\event\ConsumerAdmin.lua" />
+                            <LuaFile RelativePath=".\lua\oil\corba\services\event\EventFactory.lua" />
+                            <LuaFile RelativePath=".\lua\oil\corba\services\event\EventQueue.lua" />
+                            <LuaFile RelativePath=".\lua\oil\corba\services\event\ProxyPushConsumer.lua" />
+                            <LuaFile RelativePath=".\lua\oil\corba\services\event\ProxyPushSupplier.lua" />
+                            <LuaFile RelativePath=".\lua\oil\corba\services\event\SingleDeferredDispatcher.lua" />
+                            <LuaFile RelativePath=".\lua\oil\corba\services\event\SingleSynchronousDispatcher.lua" />
+                            <LuaFile RelativePath=".\lua\oil\corba\services\event\SupplierAdmin.lua" />
+                        </Filter>
+                    </Filter>
+                </Filter>
+                <Filter Name="kernel" >
+                    <Filter Name="base" >
+                        <LuaFile RelativePath=".\lua\oil\kernel\base\Acceptor.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\base\Client.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\base\Connector.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\base\Dispatcher.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\base\Invoker.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\base\Proxies.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\base\Receiver.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\base\Server.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\base\Sockets.lua" />
+                    </Filter>
+                    <Filter Name="cooperative" >
+                        <LuaFile RelativePath=".\lua\oil\kernel\cooperative\Invoker.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\cooperative\Mutex.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\cooperative\Receiver.lua" />
+                    </Filter>
+                    <Filter Name="typed" >
+                        <LuaFile RelativePath=".\lua\oil\kernel\typed\Client.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\typed\Dispatcher.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\typed\Proxies.lua" />
+                        <LuaFile RelativePath=".\lua\oil\kernel\typed\Server.lua" />
+                    </Filter>
+                </Filter>
+                <Filter Name="ludo" >
+                    <LuaFile RelativePath=".\lua\oil\ludo\Codec.lua" />
+                    <LuaFile RelativePath=".\lua\oil\ludo\Listener.lua" />
+                    <LuaFile RelativePath=".\lua\oil\ludo\Referrer.lua" />
+                    <LuaFile RelativePath=".\lua\oil\ludo\Requester.lua" />
+                </Filter>
+            </Filter>
+            <Filter Name="pl" >
+                <LuaFile RelativePath=".\lua\pl\app.lua" />
+                <LuaFile RelativePath=".\lua\pl\array2d.lua" />
+                <LuaFile RelativePath=".\lua\pl\class.lua" />
+                <LuaFile RelativePath=".\lua\pl\comprehension.lua" />
+                <LuaFile RelativePath=".\lua\pl\config.lua" />
+                <LuaFile RelativePath=".\lua\pl\data.lua" />
+                <LuaFile RelativePath=".\lua\pl\Date.lua" />
+                <LuaFile RelativePath=".\lua\pl\dir.lua" />
+                <LuaFile RelativePath=".\lua\pl\file.lua" />
+                <LuaFile RelativePath=".\lua\pl\func.lua" />
+                <LuaFile RelativePath=".\lua\pl\init.lua" />
+                <LuaFile RelativePath=".\lua\pl\input.lua" />
+                <LuaFile RelativePath=".\lua\pl\lapp.lua" />
+                <LuaFile RelativePath=".\lua\pl\lexer.lua" />
+                <LuaFile RelativePath=".\lua\pl\List.lua" />
+                <LuaFile RelativePath=".\lua\pl\luabalanced.lua" />
+                <LuaFile RelativePath=".\lua\pl\Map.lua" />
+                <LuaFile RelativePath=".\lua\pl\MultiMap.lua" />
+                <LuaFile RelativePath=".\lua\pl\operator.lua" />
+                <LuaFile RelativePath=".\lua\pl\OrderedMap.lua" />
+                <LuaFile RelativePath=".\lua\pl\path.lua" />
+                <LuaFile RelativePath=".\lua\pl\permute.lua" />
+                <LuaFile RelativePath=".\lua\pl\pretty.lua" />
+                <LuaFile RelativePath=".\lua\pl\seq.lua" />
+                <LuaFile RelativePath=".\lua\pl\Set.lua" />
+                <LuaFile RelativePath=".\lua\pl\sip.lua" />
+                <LuaFile RelativePath=".\lua\pl\strict.lua" />
+                <LuaFile RelativePath=".\lua\pl\stringio.lua" />
+                <LuaFile RelativePath=".\lua\pl\stringx.lua" />
+                <LuaFile RelativePath=".\lua\pl\tablex.lua" />
+                <LuaFile RelativePath=".\lua\pl\template.lua" />
+                <LuaFile RelativePath=".\lua\pl\test.lua" />
+                <LuaFile RelativePath=".\lua\pl\text.lua" />
+                <LuaFile RelativePath=".\lua\pl\utils.lua" />
+                <LuaFile RelativePath=".\lua\pl\xml.lua" />
+                <Filter Name="platf" >
+                    <LuaFile RelativePath=".\lua\pl\platf\luajava.lua" />
+                </Filter>
+            </Filter>
+            <Filter Name="socket" >
+                <LuaFile RelativePath=".\lua\socket\ftp.lua" />
+                <LuaFile RelativePath=".\lua\socket\http.lua" />
+                <LuaFile RelativePath=".\lua\socket\smtp.lua" />
+                <LuaFile RelativePath=".\lua\socket\tp.lua" />
+                <LuaFile RelativePath=".\lua\socket\url.lua" />
+            </Filter>
+            <Filter Name="vstruct" >
+                <LuaFile RelativePath=".\lua\vstruct\common.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\compile.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\cursor.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\fp.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\gen_pack.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\gen_unpack.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\init.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\io_pack.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\io_unpack.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\lexer.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\parser.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\read.lua" />
+                <LuaFile RelativePath=".\lua\vstruct\write.lua" />
+            </Filter>
+        </Filter>
+    </Filter>
 </Project>
