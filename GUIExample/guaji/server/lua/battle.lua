@@ -2,6 +2,8 @@
 package.cpath =  "../clibs/?.dll;clibs/?.dll;" .. package.cpath
 
 local redis = require 'redis';
+local roundObj;
+local targetType = 0;  
 --local client = redis.connect('127.0.0.1', 6379);
 
 function battle(my, targetList)
@@ -9,16 +11,24 @@ function battle(my, targetList)
 	local report = "";
 	--计次
 	local i = 0;
-	--对象类型
-	local targetType = 0;   
+	--对象类型 
 	local target;
 	math.randomseed(os.time())  
+	local round = 0;
+	local batttleObj = {};
 	
 	while (checkDie(my, targetList) == false) do
 		
 		targetType = i % 4;
 		
-		if targetType == 0 then		
+		if targetType == 0 then	
+			round = round + 1;
+			if(round > 1) then
+				batttleObj[round - 1] = roundObj; 
+			end;
+			roundObj = {};
+			roundObj.round = round;
+			roundObj[targetType] = {};
 			if (my.hp > 0) and (checkDizzy(my) == false) then			
 				report = report .. useSkill(my, targetList);
 			end;
@@ -27,8 +37,11 @@ function battle(my, targetList)
 		
 		if targetType > 0 then
 			target = targetList[targetType];
+			roundObj[targetType] = {};
 			if (target.hp > 0) and (checkDizzy(target) == false) then
-				report = report .. target.name .. " 对 若风 造成" .. getHurt(target, my, 100) .. "伤害" .. "\n";
+				local battleText = target.name .. " 对 若风 造成" .. getHurt(target, my, 100) .. "伤害" .. "\n";
+				report = report .. battleText;
+				roundObj[targetType].attck1  =  battleText;
 			end;		
 			report = report .. checkStatus(target);
 		end;
@@ -36,15 +49,17 @@ function battle(my, targetList)
 		report = report .. "-----------------------------\n";
 		report = report .. showHp(my, targetList);
 		report = report .. "-----------------------------\n\n\n\n";
-		i = i + 1;	
+		i = i + 1;			
 	end;
-	
 	
 	local data = {};
 	--local name = client:get("name");
-	控制台.输出("\n\n\n" .. report .. "\n\n");
+	--控制台.输出("\n\n\n" .. report .. "\n\n");
 	--控制台.输出(toTable(config).name);
-	--控制台.输出(table2json(toTable(config)));
+	--控制台.输出(roundObj);
+	--控制台.输出(table2json(toTable(roundObj)));
+	控制台.输出(toolsTable2json(batttleObj));
+	--控制台.输出(table2json(batttleObj));
 end;
 
 --显示所有对象的生命值
@@ -132,7 +147,7 @@ function useSkill(my, targetList)
 	local skillList = toolsStringSplit(skillComVo.com, "_");
 	local skillConfig;
 	local i;
-	local i;
+	local vi;
 	local skillName = skillComVo.name;
 	local str;
 	local msg = "";
@@ -142,8 +157,7 @@ function useSkill(my, targetList)
 		local skillPro = math.random(1, 100);
 		local useTargets = {};
 		skillConfig = toolsToTable(控制台.读取配置(2, skillId, ""));
-		
-		trace("看看" .. skillConfig.name);
+	
 		--概率触发
 		skillPro = 1;
 		if(skillPro <= tonumber(skillConfig.pro)) then
@@ -152,24 +166,35 @@ function useSkill(my, targetList)
 				table.insert(useTargets, my);
 			end;
 			
+			vi = 0;
 			if(tonumber(skillConfig.tNum) > 0) then
 				local list = getRandomTarget(targetList, tonumber(skillConfig.tNum));
 				for k, v in pairs(list) do
+					vi = vi + 1;
+					--roundObj[targetType]['attack' + vi] = {};
 					table.insert(useTargets, v);
 				end
 			end;
 			
+			vi = 0;
 			if(tonumber(skillConfig.hurtP) > 0) then
 				for k, v in pairs(useTargets) do
-					str = "造成伤害 " .. getHurt(my, v, tonumber(skillConfig.hurtP));
-					msg =  skillMsg(msg, skillName, my, v, str);
+					vi = vi + 1;
+					roundObj[targetType]['attack' .. tostring(vi)] = {};
+					str = getHurt(my, v, tonumber(skillConfig.hurtP));
+					msg =  skillMsg(msg, skillName, my, v, "造成伤害 " .. str);
+					roundObj[targetType]['attack' .. tostring(vi)].text = my.name .. "使用" .. skillName .. " 对" .. v.name .. "造成" .. str .. "点伤害";
 				end;
 			end;
 			
+			vi = 0;
 			if(tonumber(skillConfig.dizzy) > 0) then
 				for k, v in pairs(useTargets) do
+					vi = vi + 1;
+					roundObj[targetType]['attack' .. tostring(vi)] = {};
 					str = "造成眩晕 " .. getDizzy(my, v, tonumber(skillConfig.dizzy));
 					msg =  skillMsg(msg, skillName, my, v, str);
+					roundObj[targetType]['attack' .. tostring(vi)].text = my.name .. "使用" .. skillName .. " 对" .. v.name .. str;
 				end;
 			end;
 			
@@ -203,6 +228,7 @@ end;
 function checkDizzy(target)
 	if (target.status.dizzy ~= nil) and (target.status ~= nil) then
 		if(tonumber(target.status.dizzy) > 0) then
+			roundObj[targetType].text = target.name .. ' 处于眩晕状态';
 			return true;
 		end;
 	end;
@@ -378,7 +404,7 @@ function toolsTable2json(t)
                             or (v_type == "number" and v)  
                         tmp[#tmp + 1] = key and value and tostring(key) .. tostring(value) or nil  
                 end  
-                if tableLen(tbl) == 0 then  
+                if toolsTableLen(tbl) == 0 then  
                         return "{" .. table.concat(tmp, ",") .. "}"  
                 else  
                         return "[" .. table.concat(tmp, ",") .. "]"  
