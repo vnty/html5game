@@ -6,6 +6,8 @@ local roundObj;
 local targetType = 0;  
 local round = 0;
 local batttleObj = {};
+local attackTargetData;
+
 --local client = redis.connect('127.0.0.1', 6379);
 
 function battle(my, targetList)
@@ -35,10 +37,11 @@ function battle(my, targetList)
 			target = targetList[targetType];
 			createRoundRoleData(targetType);
 			if (target.hp > 0) and (checkDizzy(target) == false) then
-				createRoundRoleAttackTargetData(my.id, target.id);
+				
 				local hurt = getHurt(target, my, 100);
 				local battleText = target.name .. " 对 若风 造成" .. hurt .. "伤害" .. "\n";
 				report = report .. battleText;
+				createRoundRoleAttackTargetData(target.id, my.id);
 				--控制台.输出(debug.traceback());
 				控制台.输出(attackTargetData);
 				attackTargetData.hurt  =  hurt;
@@ -85,10 +88,9 @@ function createRoundRoleData(targetType)
 	roleData.attackTargetList = {};
 end;
 
-local attackTargetData;
 --创建回合内角色的攻击对象数据
-function createRoundRoleAttackTargetData()
-    attackTargetData = {};
+function createRoundRoleAttackTargetData(myid, targetid)
+	attackTargetData = {};
 	table.insert(roleData.attackTargetList, attackTargetData);
 end;
 
