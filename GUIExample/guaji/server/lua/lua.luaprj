@@ -2,7 +2,6 @@
 
 <Project Name="lua.luaprj" >
     <Filter Name="lua" >
-        <LuaFile RelativePath=".\battle - 副本.lua" />
         <LuaFile RelativePath=".\battle.lua" />
         <Filter Name="clibs" >
             <Filter Name="alien" />

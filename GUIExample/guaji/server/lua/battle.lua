@@ -64,7 +64,7 @@ function battle(my, targetList)
 	--控制台.输出(table2json(toTable(roundObj)));
 	
 	
-	trace(encode(batttleObj));
+	vtyUesrSend(encode(batttleObj));
 	
 	--控制台.战斗结果(toolsTable2json(batttleObj));
 end;
@@ -174,7 +174,6 @@ end
 --使用技能
 function useSkill(my, targetList)
 	local index = math.random(1, 3);
-	trace("test2");
 	local skillComVo = toolsToTable(vtyConfigGet(3, index, ""))
 	local skillList = toolsStringSplit(skillComVo.com, "_");
 	local skillConfig;
@@ -183,7 +182,6 @@ function useSkill(my, targetList)
 	local skillName = skillComVo.name;
 	local str;
 	local msg = "";
-	trace("test3");
 	for i = 1,toolsTableLen(skillList) do
 		local skillId = tonumber(skillList[i]);
 		local skillPro = math.random(1, 100);
