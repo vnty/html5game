@@ -1,0 +1,6 @@
+D:\code\html5\game\branches\more_awesome\GUIExample\guaji\Egret\Egret\bin\Egret.dll.config
+D:\code\html5\game\branches\more_awesome\GUIExample\guaji\Egret\Egret\bin\Egret.dll
+D:\code\html5\game\branches\more_awesome\GUIExample\guaji\Egret\Egret\bin\Egret.pdb
+D:\code\html5\game\branches\more_awesome\GUIExample\guaji\Egret\Egret\obj\Debug\Egret.csprojResolveAssemblyReference.cache
+D:\code\html5\game\branches\more_awesome\GUIExample\guaji\Egret\Egret\obj\Debug\Egret.dll
+D:\code\html5\game\branches\more_awesome\GUIExample\guaji\Egret\Egret\obj\Debug\Egret.pdb
