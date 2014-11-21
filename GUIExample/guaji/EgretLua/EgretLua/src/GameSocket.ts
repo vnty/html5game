@@ -19,7 +19,6 @@
     //NPC 提升属性
     public cmd40002: number;
 
-
     //请求我的数据
     public reqMyData(): void {
         this.send(this.cmd10001, 1, 2);
@@ -49,13 +48,22 @@
     public reqNPC_UpHp(): void {
         this.send(this.cmd40002, 2);
     }
-
-
+    private urlloader:egret.URLLoader;
     public send(id:number, ...args): void {
+        this.urlloader = new egret.URLLoader();
+        var urlreq:egret.URLRequest = new egret.URLRequest();
 
+        urlreq.url = "http://127.0.0.1:5658/?cmd=" + id + "&args="+ egret.toJSON.decode(args);
+        this.urlloader.load( urlreq );
+        this.urlloader.addEventListener(egret.Event.COMPLETE, this.onComplete, this);
     }
 
-    public parseData(): void {
+    private onComplete(event:egret.Event):void
+    {
+         this.parseData( this.urlloader.data );
+    }
 
+    public parseData(data:string): void {
+        console.log( data );
     }
 }

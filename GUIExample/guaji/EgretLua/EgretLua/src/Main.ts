@@ -32,6 +32,8 @@ class Main extends egret.DisplayObjectContainer{
      */
     private loadingView:LoadingUI;
 
+    private socket:GameSocket;
+
     public constructor() {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
@@ -98,7 +100,10 @@ class Main extends egret.DisplayObjectContainer{
         this.guiLayer = new egret.gui.UIStage();
         this.addChild(this.guiLayer);
 
-        var button:egret.gui.Button = new egret.gui.Button();
+        var myData:egret.gui.Label = new egret.gui.Label;
+
+
+       var button:egret.gui.Button = new egret.gui.Button();
         button.horizontalCenter = 0;
         button.verticalCenter = 0;
         button.label = "点击弹窗";
@@ -106,11 +111,14 @@ class Main extends egret.DisplayObjectContainer{
         //在GUI范围内一律使用addElement等方法替代addChild等方法。
         this.guiLayer.addElement(button);
 
-        
+
+
     }
 
     private onButtonClick(event:egret.TouchEvent):void{
-        egret.gui.Alert.show("这是一个GUI弹窗!","弹窗")
+        //egret.gui.Alert.show("这是一个GUI弹窗!","弹窗")
+
+        this.socket.reqMyData();
     }
 
     
