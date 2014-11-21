@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin width="138" height="44" xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+	<w:HostComponent name="egret.gui.SkinnableComponent"/>
+	<w:Declarations/>
+	<e:states>
+		<e:State name="normal"/>
+		<e:State name="disabled"/>
+	</e:states>
+	<e:UIAsset id="pic" height="28" width="28" source="10067" x="100" y="4" locked="true"/>
+	<e:UIAsset width="136" height="42" source="img_128" scaleX="-1" x="135" y="0" locked="true"/>
+	<e:UIAsset width="85" height="9" id="hp" scale9Grid="4,6,2,2" source="img_27" x="11" y="14" locked="true"/>
+	<e:Label id="data" width="85" height="13" size="11" textColor="16777215" x="12" text="Lv.40 宠物" y="1" locked="true"/>
+	<e:Label id="hpText" textAlign="center" width="80" text="1500/50000" height="12" textColor="0xFFFFFF" size="7" x="13" y="14" locked="true"/>
+	<e:Label id="decHp" text="-345" x="0" textColor="16711680" bold="true" fontFamily="Arial" y="17" visible="false"/>
+	<e:Label id="addHp" fontFamily="Arial" text="-345" bold="true" x="0" textColor="65280" y="17" visible="false"/>
+</e:Skin>
