@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin width="299" height="178" xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+	<w:HostComponent name="egret.gui.SkinnableComponent"/>
+	<w:Declarations/>
+	<e:states>
+		<e:State name="normal"/>
+		<e:State name="disabled"/>
+	</e:states>
+	<e:UIAsset id="pic" height="28" width="28" x="10" y="0" source="10067"/>
+	<e:UIAsset width="136" height="42" source="img_128" x="0" y="-1"/>
+	<e:Label text="Lv.40 宠物" x="39" y="0" width="85" height="13" size="11" textColor="16777215"/>
+</e:Skin>
