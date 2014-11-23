@@ -440,5 +440,6 @@
                 <LuaFile RelativePath=".\lua\vstruct\write.lua" />
             </Filter>
         </Filter>
+        <LuaFile RelativePath=".\server.lua" />
     </Filter>
 </Project>
