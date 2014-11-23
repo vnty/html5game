@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright (c) 2014,Egret-Labs.org
 * All rights reserved.
 * Redistribution and use in source and binary forms, with or without
@@ -34,6 +34,7 @@ var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         _super.call(this);
+        this.socket = new GameSocket;
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
     Main.prototype.onAddToStage = function (event) {
@@ -98,18 +99,32 @@ var Main = (function (_super) {
         this.guiLayer = new egret.gui.UIStage();
         this.addChild(this.guiLayer);
 
+        this.myDataLabel = new egret.gui.Label;
+        this.addChild(this.myDataLabel);
+
         var button = new egret.gui.Button();
         button.horizontalCenter = 0;
         button.verticalCenter = 0;
-        button.label = "点击弹窗";
+        button.label = "登陆";
         button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
 
         //在GUI范围内一律使用addElement等方法替代addChild等方法。
         this.guiLayer.addElement(button);
+
+        this.socket.regLister(this.socket.cmd10001, this.getMyData, this);
+
+        this.bar = new MainBar(this.socket);
+        this.bar.y = 200;
+    };
+
+    Main.prototype.getMyData = function (args) {
+        this.myDataLabel.text = args.name + " Lv:" + args.level + " Exp:" + args.exp + " Moeny:" + args.money + "\n攻击:" + args.attack + " 生命值:" + args.hp;
+        this.addChild(this.bar);
     };
 
     Main.prototype.onButtonClick = function (event) {
-        egret.gui.Alert.show("这是一个GUI弹窗!", "弹窗");
+        //egret.gui.Alert.show("这是一个GUI弹窗!","弹窗")
+        this.socket.reqMyData();
     };
     return Main;
 })(egret.DisplayObjectContainer);

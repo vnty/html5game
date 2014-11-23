@@ -1,9 +1,11 @@
 var game_file_list = [
+    "GameSocket.js",
     "skins/simple/HScrollBarThumbSkin.js",
     "skins/simple/TreeDisclosureButtonSkin.js",
     "skins/simple/VScrollBarThumbSkin.js",
     "AssetAdapter.js",
     "LoadingUI.js",
+    "mainBar.js",
     "skins/simple/CloseButtonSkin.js",
     "skins/simple/DropDownListItemRendererSkin.js",
     "skins/simple/DropDownListOpenButtonSkin.js",

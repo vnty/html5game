@@ -32,7 +32,7 @@ class Main extends egret.DisplayObjectContainer{
      */
     private loadingView:LoadingUI;
 
-    private socket:GameSocket;
+    private socket:GameSocket = new GameSocket;
 
     public constructor() {
         super();
@@ -83,7 +83,9 @@ class Main extends egret.DisplayObjectContainer{
 
     private gameLayer:egret.DisplayObjectContainer;
 
-    private guiLayer:egret.gui.UIStage;
+    private guiLayer: egret.gui.UIStage;
+
+    private myDataLabel: egret.gui.Label;
     /**
      * 创建场景界面
      */
@@ -100,29 +102,35 @@ class Main extends egret.DisplayObjectContainer{
         this.guiLayer = new egret.gui.UIStage();
         this.addChild(this.guiLayer);
 
-        var myData:egret.gui.Label = new egret.gui.Label;
+        this.myDataLabel = new egret.gui.Label;
+        this.addChild(this.myDataLabel);
 
-
-       var button:egret.gui.Button = new egret.gui.Button();
+        var button:egret.gui.Button = new egret.gui.Button();
         button.horizontalCenter = 0;
         button.verticalCenter = 0;
-        button.label = "点击弹窗";
+        button.label = "登陆";
         button.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onButtonClick,this);
         //在GUI范围内一律使用addElement等方法替代addChild等方法。
         this.guiLayer.addElement(button);
 
+        this.socket.regLister(this.socket.cmd10001, this.getMyData, this)
 
+        this.bar = new MainBar(this.socket);
+        this.bar.y = 200;
+    }
+    private bar: MainBar;
 
+    private getMyData(args: any): void {
+        this.myDataLabel.text = args.name + " Lv:" + args.level + " Exp:" + args.exp + " Moeny:" + args.money +
+        "\n攻击:" + args.attack + " 生命值:" + args.hp; 
+        this.addChild(this.bar);
     }
 
     private onButtonClick(event:egret.TouchEvent):void{
         //egret.gui.Alert.show("这是一个GUI弹窗!","弹窗")
-
+         
         this.socket.reqMyData();
     }
-
-    
-
 }
 
 

@@ -3,3 +3,9 @@ D:\code\html5\game\branches\more_awesome\GUIExample\guaji\EgretLua\EgretLua\bin\
 D:\code\html5\game\branches\more_awesome\GUIExample\guaji\EgretLua\EgretLua\bin\EgretLua.pdb
 D:\code\html5\game\branches\more_awesome\GUIExample\guaji\EgretLua\EgretLua\obj\Debug\EgretLua.dll
 D:\code\html5\game\branches\more_awesome\GUIExample\guaji\EgretLua\EgretLua\obj\Debug\EgretLua.pdb
+C:\code\html5\branches\more_awesome\GUIExample\guaji\EgretLua\EgretLua\obj\Debug\EgretLua.dll
+C:\code\html5\branches\more_awesome\GUIExample\guaji\EgretLua\EgretLua\obj\Debug\EgretLua.pdb
+C:\code\html5\branches\more_awesome\GUIExample\guaji\EgretLua\EgretLua\bin\EgretLua.dll.config
+C:\code\html5\branches\more_awesome\GUIExample\guaji\EgretLua\EgretLua\bin\EgretLua.dll
+C:\code\html5\branches\more_awesome\GUIExample\guaji\EgretLua\EgretLua\bin\EgretLua.pdb
+C:\code\html5\branches\more_awesome\GUIExample\guaji\EgretLua\EgretLua\obj\Debug\EgretLua.csprojResolveAssemblyReference.cache

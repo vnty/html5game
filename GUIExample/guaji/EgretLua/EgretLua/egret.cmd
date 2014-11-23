@@ -1,1 +1,1 @@
-"C:\Users\Administrator\AppData\Roaming\npm\egret.cmd" %*
+"C:\Users\vnby\AppData\Roaming\npm\egret.cmd" %*
