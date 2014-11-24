@@ -85,8 +85,10 @@ function user_getData(user, cmd, args)
 	result.level = redis:get(user .. "_level");
 	result.exp = redis:get(user .. "_exp");
 
+	local levelJson = getConfigItem(1, result.level);
+
 	--战斗属性
-	result.attack = redis:get(user .. "_attack");
+	result.attack = tonumber(redis:get(user .. "_attack")) + tonumber(levelJson.attack);
 	result.hp = redis:get(user .. "_hp");
 
 	sendData(user, cmd10001, result)
@@ -126,3 +128,11 @@ function npc_reqUpPro(user, cmd, args)
 	redis:set(user .. "_attack", result.attack);
 	user_getData(user, cmd40002, args);
 end;
+
+function getConfigItem(configName, index)
+	return decode(vtyConfigGet(configName, index, 3));
+end
+
+function getConfigItemValue(configName, index)
+	
+end

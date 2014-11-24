@@ -4,22 +4,22 @@ package games.core.infoes.local
 	{
 		
 
-		public var 己方对象数|mNum:int		
+		public var hurtP:int		
 
-		public var 概率|pro:int		
+		public var dizzy:int		
 
-		public var 名字|name:String		
+		public var mNum:int		
 
-		public var 减少生命值|decHpP:int		
+		public var addHpP:int		
 
-		public var 眩晕回合|dizzy:int		
+		public var decHpP:int		
 
-		public var 编号|id:int		
+		public var id:int		
 
-		public var 对方对象数|tNum:int		
+		public var tNum:int		
 
-		public var 增加生命值|addHpP:int		
+		public var name:String		
 
-		public var 伤害比例|hurtP:int
+		public var pro:int
 	}
 }
