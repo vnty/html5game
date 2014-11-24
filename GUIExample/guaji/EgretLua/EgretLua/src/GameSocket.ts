@@ -53,9 +53,12 @@
         this.urlloader = new egret.URLLoader();
         var urlreq: egret.URLRequest = new egret.URLRequest();
         var msg: any = {};
+        
+        var myDate = new Date();
 
         msg.cmd = id;
         msg.user = "vnty";
+        msg.time = myDate.getTimezoneOffset() + (Math.random() * 1000);
         msg.args = args;
         var test: string = JSON.stringify(msg);
 

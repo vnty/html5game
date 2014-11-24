@@ -8,7 +8,7 @@
     }
 
     public onAddToStage(): void {
-
+             
         var button: egret.gui.Button = new egret.gui.Button();
         button.horizontalCenter = 0;
         button.verticalCenter = 0;
