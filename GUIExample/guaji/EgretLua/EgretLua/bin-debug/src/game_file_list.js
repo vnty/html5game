@@ -5,7 +5,7 @@ var game_file_list = [
     "skins/simple/VScrollBarThumbSkin.js",
     "AssetAdapter.js",
     "LoadingUI.js",
-    "MainBar.js",
+    "mainBar.js",
     "skins/simple/CloseButtonSkin.js",
     "skins/simple/DropDownListItemRendererSkin.js",
     "skins/simple/DropDownListOpenButtonSkin.js",

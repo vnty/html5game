@@ -63,7 +63,7 @@
         var test: string = JSON.stringify(msg);
 
         //访问不了是跨域问题，要不把服务器放在同一个域下，要不调低本地安全要求
-        urlreq.url = "http://192.168.1.102:5658/" + test;
+        urlreq.url = "http://192.168.1.103:5658/" + test;
         //urlreq.url = "http://baidu.com";
         this.urlloader.load(urlreq);
         this.urlloader.addEventListener(egret.Event.COMPLETE, this.onComplete, this);

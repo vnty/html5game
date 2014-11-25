@@ -27,4 +27,4 @@ var MainBar = (function (_super) {
     };
     return MainBar;
 })(egret.gui.Group);
-//# sourceMappingURL=MainBar.js.map
+//# sourceMappingURL=mainBar.js.map
