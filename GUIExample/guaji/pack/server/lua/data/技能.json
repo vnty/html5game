@@ -1,0 +1,57 @@
+{
+	"1": {
+		"hurtP": 100,
+		"dizzy": 0,
+		"mNum": 0,
+		"addHpP": "",
+		"decHpP": "",
+		"id": 1,
+		"tNum": 1,
+		"name": "普通攻击",
+		"pro": 100
+	},
+	"2": {
+		"hurtP": 200,
+		"dizzy": 0,
+		"mNum": 0,
+		"addHpP": "",
+		"decHpP": "",
+		"id": 2,
+		"tNum": 1,
+		"name": "火焰攻击",
+		"pro": 100
+	},
+	"3": {
+		"hurtP": 50,
+		"dizzy": 0,
+		"mNum": 0,
+		"addHpP": "",
+		"decHpP": "",
+		"id": 3,
+		"tNum": 3,
+		"name": "流星火雨",
+		"pro": 100
+	},
+	"4": {
+		"hurtP": 0,
+		"dizzy": 2,
+		"mNum": 0,
+		"addHpP": "",
+		"decHpP": "",
+		"id": 4,
+		"tNum": 3,
+		"name": "击晕",
+		"pro": 25
+	},
+	"5": {
+		"hurtP": 0,
+		"dizzy": 0,
+		"mNum": 1,
+		"addHpP": 25,
+		"decHpP": "",
+		"id": 5,
+		"tNum": 0,
+		"name": "补血",
+		"pro": 100
+	}
+}
