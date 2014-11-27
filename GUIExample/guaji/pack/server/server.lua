@@ -12,9 +12,10 @@ local cmd10001 = 10001;
 --弹出信息
 local cmd11001 = 11001;
 
---发强化信息
+--强化信息
 local cmd40002 = 40002;
 
+--注册消息
 function init()
  
 	--用户信息
@@ -30,14 +31,17 @@ function init()
 	npcHadnle();
 end;
 
+--逻辑服务器调用保存
 function saveGameData()
 	redis:save();
 end;
 
+--注册协议回调方法
 function regLister(cmd, fun)
 	socketObj[cmd] = fun;
 end;
 
+--发送数据
 function sendData(user, cmd, args)
 	local data = {};
 	data.user = user;
@@ -46,6 +50,7 @@ function sendData(user, cmd, args)
 	send(encode(data));
 end;
 
+--接受请求数据
 function parseData(argsTxt)
 	
 	local args = decode(argsTxt);
@@ -60,6 +65,7 @@ end;
 
 -----------------------用户信息
 
+--用户模块
 function userHadnle()
 	regLister(10001, user_getData);
 end;
@@ -68,7 +74,7 @@ function user_getData(user, cmd, args)
 	local result = {};
 	
 	local isNew = redis:get(user);
-	
+	--创建账号
 	if (isNew == nil) then
 		redis:set(user .. "_name", "vnty");
 		redis:set(user .. "_money", 1000);
@@ -79,7 +85,8 @@ function user_getData(user, cmd, args)
 		
 		redis:set(user, os.time());
 	end;
-	
+
+--读取账号数据	
 	result.name = redis:get(user .. "_name");
 	result.money = redis:get(user .. "_money");
 	result.level = redis:get(user .. "_level");
@@ -87,10 +94,11 @@ function user_getData(user, cmd, args)
 
 	local levelJson = getConfigItem(1, result.level);
 
-	--战斗属性
+	--运算战斗属性
 	result.attack = tonumber(redis:get(user .. "_attack")) + tonumber(levelJson.attack);
 	result.hp = redis:get(user .. "_hp");
 
+	--返回客户端数据
 	sendData(user, cmd10001, result)
 end
 
@@ -102,7 +110,7 @@ function user_Msg(usre, msgType, msgValue)
 end;
 
 ------------------------NPC
-
+--NPC模块
 function npcHadnle()
 	regLister(40001, npc_npcData);
 	regLister(40002, npc_reqUpPro);
